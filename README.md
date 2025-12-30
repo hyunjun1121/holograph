@@ -2,7 +2,7 @@
 
 ## Sheaf-Theoretic Framework for LLM-Guided Causal Discovery
 
-**ICML 2026 Submission**
+**arXiv Preprint**
 
 ---
 
@@ -260,10 +260,10 @@ This code is released under the MIT License for academic use.
 If you use this code, please cite:
 
 ```bibtex
-@inproceedings{holograph2026,
-  title={HOLOGRAPH: Sheaf-Theoretic Framework for LLM-Guided Causal Discovery},
-  author={Anonymous},
-  booktitle={International Conference on Machine Learning (ICML)},
-  year={2026}
+@article{kim2025holograph,
+  title={HOLOGRAPH: Active Causal Discovery via Sheaf-Theoretic Alignment of Large Language Model Priors},
+  author={Kim, Hyunjun},
+  journal={arXiv preprint},
+  year={2025}
 }
 ```
