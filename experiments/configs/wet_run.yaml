@@ -1,0 +1,30 @@
+# Wet Run Integration Test
+# Tests LLM integration and budget enforcement
+
+experiment_id: "wet_run_test"
+description: "LLM integration test with budget enforcement"
+hypothesis: "Pipeline respects query budget with LLM enabled"
+claims_supported: ["test"]
+
+# Data config - test n_vars override
+dataset: "er"  # Erdos-Renyi random graph (NOT "synthetic_er")
+n_vars: 5      # MUST use exactly 5 variables
+seed: 123
+
+# LLM Configuration - ENABLED
+use_llm: true
+use_embeddings: false  # Keep false for faster test
+use_active_queries: true  # Enable active inference
+
+# Budget limits - STRICT limit to test enforcement
+max_total_queries: 2      # Stop after exactly 2 queries
+max_total_tokens: 50000   # Generous token limit
+
+# Model config
+learning_rate: 0.05
+max_steps: 200
+query_interval: 10  # Query every 10 steps to hit limit faster
+
+# Output config
+output_dir: "experiments/outputs/wet_run"
+save_checkpoints: true

@@ -1,0 +1,30 @@
+# Ablation: Random queries vs EFE-based selection on sachs
+# Hypothesis: EFE-based selection improves query efficiency
+
+method: holograph
+learning_rate: 0.01
+lambda_descent: 1.0
+lambda_spec: 0.1
+lambda_reg: 0.0001
+max_steps: 1000
+use_natural_gradient: true
+llm_provider: sglang
+llm_model_role: primary
+use_llm: true
+use_embeddings: false
+use_active_queries: false
+max_queries_per_step: 3
+query_interval: 50
+max_total_queries: 100
+max_total_tokens: 500000
+output_dir: experiments/outputs
+save_checkpoints: true
+checkpoint_interval: 100
+experiment_id: A4_sachs
+description: 'Ablation: Random queries vs EFE-based selection on sachs'
+hypothesis: EFE-based selection improves query efficiency
+claims_supported:
+- C7
+dataset: sachs
+n_vars: 11
+seed: 42

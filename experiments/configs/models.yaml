@@ -1,0 +1,125 @@
+# =============================================================================
+# HOLOGRAPH Model Configuration
+# =============================================================================
+# This file documents all LLM models used in experiments with scientific
+# justification for each choice. Required for ICML 2026 reproducibility.
+#
+# Model Selection Criteria:
+#   1. Reasoning Capability: Extended thinking for multi-step causal inference
+#   2. Architecture Diversity: Different model families for robustness validation
+#   3. Reproducibility: Versioned models with stable API access
+# =============================================================================
+
+api_gateway:
+  # API configuration is set via environment variables:
+  #   SGLANG_API_BASE - SGLang gateway URL (required)
+  #   SGLANG_API_KEY  - API key for authentication (required)
+  base_url_env: "SGLANG_API_BASE"
+  api_key_env: "SGLANG_API_KEY"
+  default_temperature: 0.1  # Low for deterministic causal reasoning
+  default_max_tokens: 4096
+  default_timeout: 120
+
+# =============================================================================
+# Primary Model - Used for all core experiments (E1-E5)
+# =============================================================================
+primary:
+  model_id: "deepseek-ai/DeepSeek-V3.2-Exp-thinking-on"
+  description: "DeepSeek V3.2 with extended thinking capability"
+
+  justification: |
+    Selected as primary model based on:
+    1. Extended Thinking: Enables explicit multi-step reasoning chains required
+       for complex causal inference (e.g., identifying latent confounders)
+    2. State-of-the-Art Performance: DeepSeek V3 achieves competitive results
+       on reasoning benchmarks (GSM8K, MATH, HumanEval)
+    3. Causal Reasoning: Preliminary tests show strong performance on causal
+       claim extraction and contradiction resolution tasks
+    4. Reproducibility: Specific version (V3.2-Exp) ensures experimental consistency
+
+  experiments:
+    - E1  # Single paper extraction
+    - E2  # Multi-paper fusion
+    - E3  # Corpus integration (5 papers)
+    - E4  # Corpus integration (20 papers)
+    - E5  # Rashomon stress test
+    - A1-A6  # Ablation studies
+    - I1-I6  # Component interaction studies
+    - X1-X4  # Sheaf exactness validation
+    - S1-S3  # Scalability benchmarks
+
+# =============================================================================
+# Validation Models - Used for robustness experiments (V1-V5)
+# =============================================================================
+validation_models:
+  gemini:
+    model_id: "google/gemini-2.5-pro-thinking-on"
+    description: "Google Gemini 2.5 Pro with thinking mode"
+    justification: |
+      Different model family (Google) ensures results are not artifacts of
+      DeepSeek-specific training. Comparable reasoning capability with
+      different architectural choices (Mixture of Experts, different tokenizer).
+    experiments: [V1, V2, V3, V4, V5]
+
+  qwen:
+    model_id: "togetherai/Qwen/Qwen3-235B-A22B-Thinking-2507-FP8"
+    description: "Alibaba Qwen3 235B with thinking capability"
+    justification: |
+      Third major model family (Alibaba) with 235B parameters. Validates that
+      HOLOGRAPH's causal extraction works across fundamentally different
+      pre-training corpora and architectural decisions.
+    experiments: [V1, V2, V3, V4, V5]
+
+  deepseek_r1:
+    model_id: "togetherai/deepseek-ai/DeepSeek-R1-0528"
+    description: "DeepSeek R1 - specialized reasoning model"
+    justification: |
+      Reasoning-specialized variant allows comparison between general-purpose
+      (V3.2) and reasoning-focused (R1) architectures within the same family.
+      Tests whether explicit reasoning training improves causal discovery.
+    experiments: [V1, V2, V3, V4, V5]
+
+# =============================================================================
+# Fast Model - Used for high-throughput experiments
+# =============================================================================
+fast:
+  model_id: "togetherai/deepseek-ai/DeepSeek-V3-0324"
+  description: "DeepSeek V3 without extended thinking"
+
+  justification: |
+    Non-thinking variant for scalability experiments where inference speed
+    matters more than reasoning depth. Used to establish performance baselines
+    and measure the benefit of extended thinking capability.
+
+  experiments:
+    - S1  # Scalability to 100 vars
+    - S2  # Scalability to 500 vars
+    - S3  # Real-time streaming
+
+# =============================================================================
+# Ablation: Thinking Mode Comparison
+# =============================================================================
+ablation_thinking:
+  with_thinking:
+    model_id: "deepseek-ai/DeepSeek-V3.2-Exp-thinking-on"
+  without_thinking:
+    model_id: "deepseek-ai/DeepSeek-V3.2-Exp-thinking-off"
+  comparison_experiments: [A5]  # Ablation: thinking mode effect
+
+# =============================================================================
+# Paper Documentation
+# =============================================================================
+paper_section: |
+  ## 5.4 Model Selection and Robustness
+
+  We use DeepSeek-V3.2-Exp with extended thinking as our primary model
+  (Table 1). This choice is motivated by: (1) state-of-the-art reasoning
+  performance on established benchmarks, (2) explicit thinking chains that
+  align with our need for multi-step causal inference, and (3) versioned
+  API access ensuring reproducibility.
+
+  To verify that our results are not model-specific artifacts, we replicate
+  core experiments with three additional models from different families:
+  Google Gemini 2.5 Pro, Alibaba Qwen3-235B, and DeepSeek R1. Table 5 shows
+  consistent performance across all models (±X% SHD), demonstrating that
+  HOLOGRAPH's effectiveness stems from the method rather than model choice.

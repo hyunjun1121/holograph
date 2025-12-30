@@ -1,0 +1,34 @@
+# Hidden Confounders: 30 observed, 5 latent
+# Hypothesis: Algebraic projection correctly handles hidden confounders
+
+method: holograph
+learning_rate: 0.01
+lambda_descent: 1.0
+lambda_spec: 0.1
+lambda_reg: 0.0001
+max_steps: 1500
+use_natural_gradient: true
+llm_provider: sglang
+llm_model_role: primary
+use_llm: true
+use_embeddings: false
+use_active_queries: true
+max_queries_per_step: 3
+query_interval: 50
+max_total_queries: 100
+max_total_tokens: 500000
+output_dir: experiments/outputs
+save_checkpoints: true
+checkpoint_interval: 100
+experiment_id: E3_latent_30o_5l
+description: 'Hidden Confounders: 30 observed, 5 latent'
+hypothesis: Algebraic projection correctly handles hidden confounders
+claims_supported:
+- C3
+dataset: latent
+n_vars: 30
+dataset_kwargs:
+  n_observed: 30
+  n_latent: 5
+  edge_prob: 0.2
+seed: 42

@@ -1,0 +1,19 @@
+# E3: Hidden Confounder Handling
+experiment_id: "E3_hidden_confounders"
+description: "Synthetic ADMGs with latent variables"
+hypothesis: "Algebraic projection correctly handles hidden confounders"
+claims_supported: ["C3"]
+
+method: "holograph"
+n_vars: 25
+learning_rate: 0.01
+lambda_descent: 1.0
+lambda_spec: 0.1
+lambda_reg: 0.0001
+max_steps: 1500
+
+dataset: "synthetic_admg"
+seed: 42
+output_dir: "experiments/outputs"
+save_checkpoints: true
+checkpoint_interval: 100

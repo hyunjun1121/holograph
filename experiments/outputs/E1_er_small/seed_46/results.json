@@ -1,0 +1,88 @@
+{
+  "_metadata": {
+    "experiment_id": "E1_er_small",
+    "description": "Main Benchmark: Erdos-Renyi random graph (n=20, p=0.2)",
+    "hypothesis": "HOLOGRAPH achieves lower SHD than baselines",
+    "claims_supported": [
+      "C1",
+      "C2"
+    ],
+    "config": {
+      "experiment_id": "E1_er_small",
+      "description": "Main Benchmark: Erdos-Renyi random graph (n=20, p=0.2)",
+      "hypothesis": "HOLOGRAPH achieves lower SHD than baselines",
+      "claims_supported": [
+        "C1",
+        "C2"
+      ],
+      "method": "holograph",
+      "n_vars": 20,
+      "learning_rate": 0.01,
+      "lambda_descent": 1.0,
+      "lambda_spec": 0.1,
+      "lambda_reg": 0.0001,
+      "max_steps": 1000,
+      "use_natural_gradient": true,
+      "dataset": "er",
+      "dataset_kwargs": {
+        "edge_prob": 0.2
+      },
+      "seed": 46,
+      "llm_provider": "sglang",
+      "llm_model_role": "primary",
+      "llm_api_key": null,
+      "use_llm": true,
+      "embedding_model": "Alibaba-NLP/gte-Qwen2-7B-instruct",
+      "embedding_api_key": null,
+      "use_embeddings": false,
+      "use_active_queries": true,
+      "max_queries_per_step": 3,
+      "query_interval": 50,
+      "max_total_queries": 100,
+      "max_total_tokens": 500000,
+      "output_dir": "experiments/outputs",
+      "save_checkpoints": true,
+      "checkpoint_interval": 100
+    },
+    "git_commit": "unknown",
+    "slurm_job_id": "2764873",
+    "seed": 46,
+    "timestamp": "2025-12-30T19:44:44.750921",
+    "wall_time_seconds": 0.6892035007476807,
+    "dataset": "ER_n20_p0.2"
+  },
+  "results": {
+    "shd": 43,
+    "shd_undirected": 43,
+    "sid": 71.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "tp": 0,
+    "fp": 0,
+    "fn": 43,
+    "final_loss_total": 7.62939453125e-05,
+    "final_spectral_radius": 0.16978007555007935,
+    "final_acyclicity": 7.62939453125e-05,
+    "wall_time_seconds": 0.6524090766906738,
+    "num_queries": 36,
+    "training_steps": 553,
+    "final_loss": {
+      "total": 7.62939453125e-05,
+      "spectral_radius": 0.16978007555007935,
+      "acyclicity": 7.62939453125e-05
+    },
+    "llm_usage": {
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "total_queries": 0,
+      "model": "deepseek-ai/DeepSeek-V3.2-Exp-thinking-on",
+      "model_role": "primary"
+    }
+  },
+  "artifacts": {
+    "learned_graph": "experiments/outputs/E1_er_small/seed_46/graph.npz",
+    "training_log": "experiments/outputs/E1_er_small/seed_46/training.csv",
+    "checkpoint": "experiments/outputs/E1_er_small/seed_46/checkpoint.pt"
+  }
+}

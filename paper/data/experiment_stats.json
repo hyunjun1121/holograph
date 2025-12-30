@@ -1,0 +1,3077 @@
+{
+  "A4_er_medium": {
+    "experiment_id": "A4_er_medium",
+    "experiment_type": "ablation",
+    "description": "Ablation: Random queries vs EFE-based selection on er_medium",
+    "hypothesis": "EFE-based selection improves query efficiency",
+    "claims_supported": [
+      "C7"
+    ],
+    "dataset": "ER_n50_p0.15",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "shd": {
+        "mean": 193.2,
+        "std": 13.614697940094006,
+        "min": 180.0,
+        "max": 218.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "sid": {
+        "mean": 705.6,
+        "std": 57.22447029025258,
+        "min": 605.0,
+        "max": 763.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "wall_time_seconds": {
+        "mean": 0.40043225288391116,
+        "std": 0.00598543153610337,
+        "min": 0.39241600036621094,
+        "max": 0.4088327884674072,
+        "n": 5
+      },
+      "num_queries": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 1001.0,
+        "std": 0.0,
+        "min": 1001.0,
+        "max": 1001.0,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.005682751908898354,
+        "std": 0.0003816214927232254,
+        "min": 0.005109808407723904,
+        "max": 0.00612644013017416,
+        "n": 5
+      },
+      "final_spectral_radius": {
+        "mean": 0.1676815778017044,
+        "std": 0.008576146896293976,
+        "min": 0.15314564108848572,
+        "max": 0.17790251970291138,
+        "n": 5
+      },
+      "final_acyclicity": {
+        "mean": 0.000179290771484375,
+        "std": 2.1847261143915333e-05,
+        "min": 0.000152587890625,
+        "max": 0.000213623046875,
+        "n": 5
+      }
+    }
+  },
+  "E3_latent_30o_5l": {
+    "experiment_id": "E3_latent_30o_5l",
+    "experiment_type": "main",
+    "description": "Hidden Confounders: 30 observed, 5 latent",
+    "hypothesis": "Algebraic projection correctly handles hidden confounders",
+    "claims_supported": [
+      "C3"
+    ],
+    "dataset": "Latent_o30_l5",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "shd": {
+        "mean": 89.8,
+        "std": 5.706137047074842,
+        "min": 84.0,
+        "max": 99.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "sid": {
+        "mean": 243.2,
+        "std": 19.507947098554475,
+        "min": 225.0,
+        "max": 278.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "wall_time_seconds": {
+        "mean": 0.43744454383850095,
+        "std": 0.023719241241942322,
+        "min": 0.405550479888916,
+        "max": 0.4779820442199707,
+        "n": 5
+      },
+      "num_queries": {
+        "mean": 90.0,
+        "std": 0.0,
+        "min": 90.0,
+        "max": 90.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 1501.0,
+        "std": 0.0,
+        "min": 1501.0,
+        "max": 1501.0,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.00014495849609375,
+        "std": 9.49851959075068e-06,
+        "min": 0.0001354217529296875,
+        "max": 0.00016021728515625,
+        "n": 5
+      },
+      "final_spectral_radius": {
+        "mean": 0.17254460155963897,
+        "std": 0.017744577673388447,
+        "min": 0.152715802192688,
+        "max": 0.201893150806427,
+        "n": 5
+      },
+      "final_acyclicity": {
+        "mean": 0.00014495849609375,
+        "std": 9.49851959075068e-06,
+        "min": 0.0001354217529296875,
+        "max": 0.00016021728515625,
+        "n": 5
+      }
+    }
+  },
+  "E3_latent_50o_8l": {
+    "experiment_id": "E3_latent_50o_8l",
+    "experiment_type": "main",
+    "description": "Hidden Confounders: 50 observed, 8 latent",
+    "hypothesis": "Algebraic projection correctly handles hidden confounders",
+    "claims_supported": [
+      "C3"
+    ],
+    "dataset": "Latent_o50_l8",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "shd": {
+        "mean": 192.8,
+        "std": 10.380751417888785,
+        "min": 175.0,
+        "max": 206.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "sid": {
+        "mean": 730.6,
+        "std": 68.09581484937235,
+        "min": 632.0,
+        "max": 833.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "wall_time_seconds": {
+        "mean": 2041.8829573631288,
+        "std": 1667.0989491522078,
+        "min": 0.42600464820861816,
+        "max": 3449.034336566925,
+        "n": 5
+      },
+      "num_queries": {
+        "mean": 90.0,
+        "std": 0.0,
+        "min": 90.0,
+        "max": 90.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 1500.4,
+        "std": 0.4898979485566356,
+        "min": 1500.0,
+        "max": 1501.0,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.0003832367481663823,
+        "std": 2.812149038883443e-05,
+        "min": 0.0003549266839399934,
+        "max": 0.0004306678310967982,
+        "n": 5
+      },
+      "final_spectral_radius": {
+        "mean": 0.1460810422897339,
+        "std": 0.01185171319109255,
+        "min": 0.13243316113948822,
+        "max": 0.162120521068573,
+        "n": 5
+      },
+      "final_acyclicity": {
+        "mean": 0.000102996826171875,
+        "std": 2.004077993250076e-05,
+        "min": 8.392333984375e-05,
+        "max": 0.000141143798828125,
+        "n": 5
+      }
+    }
+  },
+  "E1_sf_medium": {
+    "experiment_id": "E1_sf_medium",
+    "experiment_type": "main",
+    "description": "Main Benchmark: Scale-free graph (n=50, avg_degree=2.0)",
+    "hypothesis": "HOLOGRAPH achieves lower SHD than baselines",
+    "claims_supported": [
+      "C1",
+      "C2"
+    ],
+    "dataset": "SF_n50_d2.0",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "shd": {
+        "mean": 49.0,
+        "std": 0.0,
+        "min": 49.0,
+        "max": 49.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "sid": {
+        "mean": 153.2,
+        "std": 24.30966885829587,
+        "min": 124.0,
+        "max": 186.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "wall_time_seconds": {
+        "mean": 0.4185523509979248,
+        "std": 0.014576025743722592,
+        "min": 0.4007401466369629,
+        "max": 0.4359579086303711,
+        "n": 5
+      },
+      "num_queries": {
+        "mean": 60.0,
+        "std": 0.0,
+        "min": 60.0,
+        "max": 60.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 1501.0,
+        "std": 0.0,
+        "min": 1501.0,
+        "max": 1501.0,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.0004962713806889951,
+        "std": 0.00016317181732299605,
+        "min": 0.0003742892877198756,
+        "max": 0.0008193152025341988,
+        "n": 5
+      },
+      "final_spectral_radius": {
+        "mean": 0.14292761981487273,
+        "std": 0.009375426104391524,
+        "min": 0.12946341931819916,
+        "max": 0.15585318207740784,
+        "n": 5
+      },
+      "final_acyclicity": {
+        "mean": 0.000109100341796875,
+        "std": 1.8625725732015538e-05,
+        "min": 8.392333984375e-05,
+        "max": 0.0001373291015625,
+        "n": 5
+      }
+    }
+  },
+  "X1_n100_d10": {
+    "experiment_id": "X1_n100_d10",
+    "experiment_type": "sheaf",
+    "description": "Sheaf Axiom: Identity (rho_UU = id) (n=100, depth=10)",
+    "hypothesis": "Identity axiom holds to numerical precision (<1e-6)",
+    "claims_supported": [
+      "T1"
+    ],
+    "dataset": "SF_n100_d2.0",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "identity_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "transitivity_max": {
+        "mean": 2.8421321118798915e-06,
+        "std": 1.3316108452441734e-07,
+        "min": 2.6637440981858163e-06,
+        "max": 2.9813034885251e-06,
+        "n": 5
+      },
+      "transitivity_mean": {
+        "mean": 1.6730229347995295e-06,
+        "std": 3.5190048479175374e-08,
+        "min": 1.6293085222545067e-06,
+        "max": 1.725012730368507e-06,
+        "n": 5
+      },
+      "locality_max": {
+        "mean": 3.4458829402923583,
+        "std": 0.6041462933927798,
+        "min": 3.0163609981536865,
+        "max": 4.610300064086914,
+        "n": 5
+      },
+      "locality_mean": {
+        "mean": 0.8600414325077474,
+        "std": 0.080960509168302,
+        "min": 0.7656768807010051,
+        "max": 0.9594163618341911,
+        "n": 5
+      },
+      "gluing_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "gluing_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_pass_rate": 1.0,
+      "transitivity_pass_rate": 1.0,
+      "locality_pass_rate": 0.0,
+      "gluing_pass_rate": 1.0,
+      "wall_time_seconds": {
+        "mean": 31.961807870864867,
+        "std": 1.42917450000819,
+        "min": 30.144457817077637,
+        "max": 34.199819564819336,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.5718250155448914,
+        "std": 0.02165572530436304,
+        "min": 0.529498279094696,
+        "max": 0.5866193771362305,
+        "n": 5
+      }
+    }
+  },
+  "A3_sachs": {
+    "experiment_id": "A3_sachs",
+    "experiment_type": "ablation",
+    "description": "Ablation: Without spectral regularization (lambda_spec=0) on sachs",
+    "hypothesis": "Spectral regularization prevents numerical instability",
+    "claims_supported": [
+      "C4"
+    ],
+    "dataset": "SACHS",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "shd": {
+        "mean": 16.4,
+        "std": 0.8,
+        "min": 15.0,
+        "max": 17.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.08538011695906432,
+        "std": 0.07911829017678484,
+        "min": 0.0,
+        "max": 0.21052631578947367,
+        "n": 5
+      },
+      "sid": {
+        "mean": 18.2,
+        "std": 1.1661903789690602,
+        "min": 16.0,
+        "max": 19.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.5,
+        "std": 0.4472135954999579,
+        "min": 0.0,
+        "max": 1.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.047058823529411764,
+        "std": 0.04401949866792872,
+        "min": 0.0,
+        "max": 0.11764705882352941,
+        "n": 5
+      },
+      "wall_time_seconds": {
+        "mean": 0.39136109352111814,
+        "std": 0.027278751850291872,
+        "min": 0.3572993278503418,
+        "max": 0.4314289093017578,
+        "n": 5
+      },
+      "num_queries": {
+        "mean": 11.4,
+        "std": 7.914543574963751,
+        "min": 6.0,
+        "max": 27.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 150.8,
+        "std": 147.30702630899856,
+        "min": 53.0,
+        "max": 442.0,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 7.476806640625e-05,
+        "std": 1.566582427855001e-05,
+        "min": 5.14984130859375e-05,
+        "max": 9.918212890625e-05,
+        "n": 5
+      },
+      "final_spectral_radius": {
+        "mean": 0.14143595546483995,
+        "std": 0.045771654531718026,
+        "min": 0.10128025710582733,
+        "max": 0.22855962812900543,
+        "n": 5
+      },
+      "final_acyclicity": {
+        "mean": 7.43865966796875e-05,
+        "std": 1.5078914929239174e-05,
+        "min": 5.14984130859375e-05,
+        "max": 9.72747802734375e-05,
+        "n": 5
+      }
+    }
+  },
+  "A2_er_medium": {
+    "experiment_id": "A2_er_medium",
+    "experiment_type": "ablation",
+    "description": "Ablation: Without Frobenius descent loss (lambda_descent=0) on er_medium",
+    "hypothesis": "Sheaf consistency is essential for multi-source integration",
+    "claims_supported": [
+      "C1"
+    ],
+    "dataset": "ER_n50_p0.15",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "shd": {
+        "mean": 193.2,
+        "std": 13.614697940094006,
+        "min": 180.0,
+        "max": 218.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "sid": {
+        "mean": 705.6,
+        "std": 57.22447029025258,
+        "min": 605.0,
+        "max": 763.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "wall_time_seconds": {
+        "mean": 0.4020074367523193,
+        "std": 0.03401594646968613,
+        "min": 0.36858439445495605,
+        "max": 0.4672739505767822,
+        "n": 5
+      },
+      "num_queries": {
+        "mean": 60.0,
+        "std": 0.0,
+        "min": 60.0,
+        "max": 60.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 1001.0,
+        "std": 0.0,
+        "min": 1001.0,
+        "max": 1001.0,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.002770958049222827,
+        "std": 0.00019222393864300142,
+        "min": 0.0024266685359179974,
+        "max": 0.0029675730038434267,
+        "n": 5
+      },
+      "final_spectral_radius": {
+        "mean": 0.15575125217437744,
+        "std": 0.009182065907287668,
+        "min": 0.14568352699279785,
+        "max": 0.16757109761238098,
+        "n": 5
+      },
+      "final_acyclicity": {
+        "mean": 0.0001983642578125,
+        "std": 3.776357626576105e-05,
+        "min": 0.000156402587890625,
+        "max": 0.000255584716796875,
+        "n": 5
+      }
+    }
+  },
+  "E1_er_small": {
+    "experiment_id": "E1_er_small",
+    "experiment_type": "main",
+    "description": "Main Benchmark: Erdos-Renyi random graph (n=20, p=0.2)",
+    "hypothesis": "HOLOGRAPH achieves lower SHD than baselines",
+    "claims_supported": [
+      "C1",
+      "C2"
+    ],
+    "dataset": "ER_n20_p0.2",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "shd": {
+        "mean": 43.2,
+        "std": 3.7094473981982814,
+        "min": 38.0,
+        "max": 49.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "sid": {
+        "mean": 88.6,
+        "std": 11.943198901466893,
+        "min": 71.0,
+        "max": 104.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "wall_time_seconds": {
+        "mean": 0.5449495315551758,
+        "std": 0.11418704359126952,
+        "min": 0.372234582901001,
+        "max": 0.6524090766906738,
+        "n": 5
+      },
+      "num_queries": {
+        "mean": 45.6,
+        "std": 6.945502141674136,
+        "min": 36.0,
+        "max": 57.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 713.0,
+        "std": 115.75836902790225,
+        "min": 553.0,
+        "max": 903.0,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 8.392333984375e-05,
+        "std": 8.001776490555966e-06,
+        "min": 7.62939453125e-05,
+        "max": 9.918212890625e-05,
+        "n": 5
+      },
+      "final_spectral_radius": {
+        "mean": 0.14551217257976531,
+        "std": 0.01651586277224667,
+        "min": 0.12323345243930817,
+        "max": 0.16978007555007935,
+        "n": 5
+      },
+      "final_acyclicity": {
+        "mean": 8.392333984375e-05,
+        "std": 8.001776490555966e-06,
+        "min": 7.62939453125e-05,
+        "max": 9.918212890625e-05,
+        "n": 5
+      }
+    }
+  },
+  "X1_n50_d5": {
+    "experiment_id": "X1_n50_d5",
+    "experiment_type": "sheaf",
+    "description": "Sheaf Axiom: Identity (rho_UU = id) (n=50, depth=5)",
+    "hypothesis": "Identity axiom holds to numerical precision (<1e-6)",
+    "claims_supported": [
+      "T1"
+    ],
+    "dataset": "SF_n50_d2.0",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "identity_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "transitivity_max": {
+        "mean": 2.449489614519962e-06,
+        "std": 9.495683755651964e-08,
+        "min": 2.2794040290818884e-06,
+        "max": 2.527161338861106e-06,
+        "n": 5
+      },
+      "transitivity_mean": {
+        "mean": 1.6117238582112927e-06,
+        "std": 3.5539206245060566e-08,
+        "min": 1.5828848028295424e-06,
+        "max": 1.6789308920046383e-06,
+        "n": 5
+      },
+      "locality_max": {
+        "mean": 2.384548807144165,
+        "std": 1.4855137165661607,
+        "min": 1.401665449142456,
+        "max": 5.334572792053223,
+        "n": 5
+      },
+      "locality_mean": {
+        "mean": 0.49970538137026893,
+        "std": 0.10263342395053138,
+        "min": 0.3822656326676504,
+        "max": 0.6760381447055783,
+        "n": 5
+      },
+      "gluing_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "gluing_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_pass_rate": 1.0,
+      "transitivity_pass_rate": 1.0,
+      "locality_pass_rate": 0.0,
+      "gluing_pass_rate": 1.0,
+      "wall_time_seconds": {
+        "mean": 7.19502215385437,
+        "std": 0.06146036336613786,
+        "min": 7.142779588699341,
+        "max": 7.294798135757446,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.07693692892789841,
+        "std": 0.004509859440632062,
+        "min": 0.07017495483160019,
+        "max": 0.08185887336730957,
+        "n": 5
+      }
+    }
+  },
+  "X2_n50_d5": {
+    "experiment_id": "X2_n50_d5",
+    "experiment_type": "sheaf",
+    "description": "Sheaf Axiom: Transitivity (rho_ZU = rho_ZV o rho_VU) (n=50, depth=5)",
+    "hypothesis": "Transitivity error < epsilon for all context triples",
+    "claims_supported": [
+      "T2"
+    ],
+    "dataset": "SF_n50_d2.0",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "identity_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "transitivity_max": {
+        "mean": 2.449489614519962e-06,
+        "std": 9.495683755651964e-08,
+        "min": 2.2794040290818884e-06,
+        "max": 2.527161338861106e-06,
+        "n": 5
+      },
+      "transitivity_mean": {
+        "mean": 1.6117238582112927e-06,
+        "std": 3.5539206245060566e-08,
+        "min": 1.5828848028295424e-06,
+        "max": 1.6789308920046383e-06,
+        "n": 5
+      },
+      "locality_max": {
+        "mean": 2.384548807144165,
+        "std": 1.4855137165661607,
+        "min": 1.401665449142456,
+        "max": 5.334572792053223,
+        "n": 5
+      },
+      "locality_mean": {
+        "mean": 0.49970538137026893,
+        "std": 0.10263342395053138,
+        "min": 0.3822656326676504,
+        "max": 0.6760381447055783,
+        "n": 5
+      },
+      "gluing_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "gluing_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_pass_rate": 1.0,
+      "transitivity_pass_rate": 1.0,
+      "locality_pass_rate": 0.0,
+      "gluing_pass_rate": 1.0,
+      "wall_time_seconds": {
+        "mean": 7.216811847686768,
+        "std": 0.37967527737518253,
+        "min": 6.92481541633606,
+        "max": 7.965019941329956,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.07693692892789841,
+        "std": 0.004509859440632062,
+        "min": 0.07017495483160019,
+        "max": 0.08185887336730957,
+        "n": 5
+      }
+    }
+  },
+  "A1_er_medium": {
+    "experiment_id": "A1_er_medium",
+    "experiment_type": "ablation",
+    "description": "Ablation: Standard SGD vs Natural Gradient on er_medium",
+    "hypothesis": "Natural gradient improves convergence speed and accuracy",
+    "claims_supported": [
+      "C2"
+    ],
+    "dataset": "ER_n50_p0.15",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "shd": {
+        "mean": 193.2,
+        "std": 13.614697940094006,
+        "min": 180.0,
+        "max": 218.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "sid": {
+        "mean": 705.6,
+        "std": 57.22447029025258,
+        "min": 605.0,
+        "max": 763.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "wall_time_seconds": {
+        "mean": 0.422485876083374,
+        "std": 0.04091979776442214,
+        "min": 0.3745284080505371,
+        "max": 0.48877763748168945,
+        "n": 5
+      },
+      "num_queries": {
+        "mean": 60.0,
+        "std": 0.0,
+        "min": 60.0,
+        "max": 60.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 1001.0,
+        "std": 0.0,
+        "min": 1001.0,
+        "max": 1001.0,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.00276263365522027,
+        "std": 0.00020595222464445513,
+        "min": 0.002387409098446369,
+        "max": 0.0029663422610610723,
+        "n": 5
+      },
+      "final_spectral_radius": {
+        "mean": 0.15501985251903533,
+        "std": 0.009467631011751838,
+        "min": 0.1432986557483673,
+        "max": 0.16756559908390045,
+        "n": 5
+      },
+      "final_acyclicity": {
+        "mean": 0.0001983642578125,
+        "std": 3.776357626576105e-05,
+        "min": 0.000156402587890625,
+        "max": 0.000255584716796875,
+        "n": 5
+      }
+    }
+  },
+  "E5_rashomon": {
+    "experiment_id": "E5_rashomon",
+    "experiment_type": "main",
+    "description": "Rashomon Stress Test: Contradiction detection and resolution",
+    "hypothesis": "HOLOGRAPH detects contradictions >=95%, resolves via latent variables >=70%",
+    "claims_supported": [
+      "C1",
+      "C5"
+    ],
+    "dataset": "Latent_o30_l5",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "shd": {
+        "mean": 89.8,
+        "std": 5.706137047074842,
+        "min": 84.0,
+        "max": 99.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "sid": {
+        "mean": 243.2,
+        "std": 19.507947098554475,
+        "min": 225.0,
+        "max": 278.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "wall_time_seconds": {
+        "mean": 0.47301502227783204,
+        "std": 0.11083811504257272,
+        "min": 0.39487195014953613,
+        "max": 0.6888971328735352,
+        "n": 5
+      },
+      "num_queries": {
+        "mean": 100.0,
+        "std": 0.0,
+        "min": 100.0,
+        "max": 100.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 1501.0,
+        "std": 0.0,
+        "min": 1501.0,
+        "max": 1501.0,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.00015457128174602985,
+        "std": 1.2722537635154483e-05,
+        "min": 0.0001368293451378122,
+        "max": 0.00017297035083174706,
+        "n": 5
+      },
+      "final_spectral_radius": {
+        "mean": 0.1799373894929886,
+        "std": 0.015953890605476945,
+        "min": 0.16251203417778015,
+        "max": 0.20522242784500122,
+        "n": 5
+      },
+      "final_acyclicity": {
+        "mean": 0.0001476287841796875,
+        "std": 1.561698111759851e-05,
+        "min": 0.0001220703125,
+        "max": 0.0001678466796875,
+        "n": 5
+      }
+    }
+  },
+  "E1_sachs": {
+    "experiment_id": "E1_sachs",
+    "experiment_type": "main",
+    "description": "Main Benchmark: SACHS protein signaling network (11 proteins, 17 edges)",
+    "hypothesis": "HOLOGRAPH achieves lower SHD than baselines",
+    "claims_supported": [
+      "C1",
+      "C2"
+    ],
+    "dataset": "SACHS",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "shd": {
+        "mean": 16.4,
+        "std": 0.8,
+        "min": 15.0,
+        "max": 17.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.08538011695906432,
+        "std": 0.07911829017678484,
+        "min": 0.0,
+        "max": 0.21052631578947367,
+        "n": 5
+      },
+      "sid": {
+        "mean": 18.2,
+        "std": 1.1661903789690602,
+        "min": 16.0,
+        "max": 19.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.5,
+        "std": 0.4472135954999579,
+        "min": 0.0,
+        "max": 1.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.047058823529411764,
+        "std": 0.04401949866792872,
+        "min": 0.0,
+        "max": 0.11764705882352941,
+        "n": 5
+      },
+      "wall_time_seconds": {
+        "mean": 0.36180987358093264,
+        "std": 0.023389075406396526,
+        "min": 0.3331570625305176,
+        "max": 0.4041454792022705,
+        "n": 5
+      },
+      "num_queries": {
+        "mean": 11.4,
+        "std": 7.914543574963751,
+        "min": 6.0,
+        "max": 27.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 150.8,
+        "std": 147.30702630899856,
+        "min": 53.0,
+        "max": 442.0,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 7.476806640625e-05,
+        "std": 1.566582427855001e-05,
+        "min": 5.14984130859375e-05,
+        "max": 9.918212890625e-05,
+        "n": 5
+      },
+      "final_spectral_radius": {
+        "mean": 0.14143595546483995,
+        "std": 0.045771654531718026,
+        "min": 0.10128025710582733,
+        "max": 0.22855962812900543,
+        "n": 5
+      },
+      "final_acyclicity": {
+        "mean": 7.43865966796875e-05,
+        "std": 1.5078914929239174e-05,
+        "min": 5.14984130859375e-05,
+        "max": 9.72747802734375e-05,
+        "n": 5
+      }
+    }
+  },
+  "A4_sachs": {
+    "experiment_id": "A4_sachs",
+    "experiment_type": "ablation",
+    "description": "Ablation: Random queries vs EFE-based selection on sachs",
+    "hypothesis": "EFE-based selection improves query efficiency",
+    "claims_supported": [
+      "C7"
+    ],
+    "dataset": "SACHS",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "shd": {
+        "mean": 17.0,
+        "std": 0.0,
+        "min": 17.0,
+        "max": 17.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "sid": {
+        "mean": 19.0,
+        "std": 0.0,
+        "min": 19.0,
+        "max": 19.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "wall_time_seconds": {
+        "mean": 0.3679473400115967,
+        "std": 0.01993715275285102,
+        "min": 0.3427152633666992,
+        "max": 0.40410685539245605,
+        "n": 5
+      },
+      "num_queries": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 897.0,
+        "std": 158.0683396509244,
+        "min": 593.0,
+        "max": 1001.0,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.00015583038330078126,
+        "std": 6.608240492658094e-05,
+        "min": 9.918212890625e-05,
+        "max": 0.0002574920654296875,
+        "n": 5
+      },
+      "final_spectral_radius": {
+        "mean": 0.1763990432024002,
+        "std": 0.0106615016237156,
+        "min": 0.15610389411449432,
+        "max": 0.18655526638031006,
+        "n": 5
+      },
+      "final_acyclicity": {
+        "mean": 0.00015544891357421875,
+        "std": 6.605046695871561e-05,
+        "min": 9.918212890625e-05,
+        "max": 0.0002574920654296875,
+        "n": 5
+      }
+    }
+  },
+  "E1_er_medium": {
+    "experiment_id": "E1_er_medium",
+    "experiment_type": "main",
+    "description": "Main Benchmark: Erdos-Renyi random graph (n=50, p=0.15)",
+    "hypothesis": "HOLOGRAPH achieves lower SHD than baselines",
+    "claims_supported": [
+      "C1",
+      "C2"
+    ],
+    "dataset": "ER_n50_p0.15",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "shd": {
+        "mean": 193.2,
+        "std": 13.614697940094006,
+        "min": 180.0,
+        "max": 218.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "sid": {
+        "mean": 705.6,
+        "std": 57.22447029025258,
+        "min": 605.0,
+        "max": 763.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "wall_time_seconds": {
+        "mean": 0.42352871894836425,
+        "std": 0.02196685099053957,
+        "min": 0.3989400863647461,
+        "max": 0.45830821990966797,
+        "n": 5
+      },
+      "num_queries": {
+        "mean": 60.0,
+        "std": 0.0,
+        "min": 60.0,
+        "max": 60.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 1501.0,
+        "std": 0.0,
+        "min": 1501.0,
+        "max": 1501.0,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.00029742533224634825,
+        "std": 5.3636992138866654e-05,
+        "min": 0.00021313116303645074,
+        "max": 0.00036375250783748925,
+        "n": 5
+      },
+      "final_spectral_radius": {
+        "mean": 0.1386354833841324,
+        "std": 0.007970004388195296,
+        "min": 0.13011056184768677,
+        "max": 0.14884896576404572,
+        "n": 5
+      },
+      "final_acyclicity": {
+        "mean": 0.000115203857421875,
+        "std": 2.268382072039567e-05,
+        "min": 9.1552734375e-05,
+        "max": 0.000152587890625,
+        "n": 5
+      }
+    }
+  },
+  "X3_n50_d5": {
+    "experiment_id": "X3_n50_d5",
+    "experiment_type": "sheaf",
+    "description": "Sheaf Axiom: Locality (restrictions agree on overlaps) (n=50, depth=5)",
+    "hypothesis": "Locality error < epsilon for all overlapping contexts",
+    "claims_supported": [
+      "T3"
+    ],
+    "dataset": "SF_n50_d2.0",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "identity_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "transitivity_max": {
+        "mean": 2.449489614519962e-06,
+        "std": 9.495683755651964e-08,
+        "min": 2.2794040290818884e-06,
+        "max": 2.527161338861106e-06,
+        "n": 5
+      },
+      "transitivity_mean": {
+        "mean": 1.6117238582112927e-06,
+        "std": 3.5539206245060566e-08,
+        "min": 1.5828848028295424e-06,
+        "max": 1.6789308920046383e-06,
+        "n": 5
+      },
+      "locality_max": {
+        "mean": 2.384548807144165,
+        "std": 1.4855137165661607,
+        "min": 1.401665449142456,
+        "max": 5.334572792053223,
+        "n": 5
+      },
+      "locality_mean": {
+        "mean": 0.49970538137026893,
+        "std": 0.10263342395053138,
+        "min": 0.3822656326676504,
+        "max": 0.6760381447055783,
+        "n": 5
+      },
+      "gluing_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "gluing_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_pass_rate": 1.0,
+      "transitivity_pass_rate": 1.0,
+      "locality_pass_rate": 0.0,
+      "gluing_pass_rate": 1.0,
+      "wall_time_seconds": {
+        "mean": 7.255559015274048,
+        "std": 0.16211916281980618,
+        "min": 7.063905715942383,
+        "max": 7.555349349975586,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.07693692892789841,
+        "std": 0.004509859440632062,
+        "min": 0.07017495483160019,
+        "max": 0.08185887336730957,
+        "n": 5
+      }
+    }
+  },
+  "X4_n50_d5": {
+    "experiment_id": "X4_n50_d5",
+    "experiment_type": "sheaf",
+    "description": "Sheaf Axiom: Gluing (reconstruct global from local) (n=50, depth=5)",
+    "hypothesis": "Gluing produces SHD=0 reconstruction",
+    "claims_supported": [
+      "T4"
+    ],
+    "dataset": "SF_n50_d2.0",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "identity_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "transitivity_max": {
+        "mean": 2.449489614519962e-06,
+        "std": 9.495683755651964e-08,
+        "min": 2.2794040290818884e-06,
+        "max": 2.527161338861106e-06,
+        "n": 5
+      },
+      "transitivity_mean": {
+        "mean": 1.6117238582112927e-06,
+        "std": 3.5539206245060566e-08,
+        "min": 1.5828848028295424e-06,
+        "max": 1.6789308920046383e-06,
+        "n": 5
+      },
+      "locality_max": {
+        "mean": 2.384548807144165,
+        "std": 1.4855137165661607,
+        "min": 1.401665449142456,
+        "max": 5.334572792053223,
+        "n": 5
+      },
+      "locality_mean": {
+        "mean": 0.49970538137026893,
+        "std": 0.10263342395053138,
+        "min": 0.3822656326676504,
+        "max": 0.6760381447055783,
+        "n": 5
+      },
+      "gluing_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "gluing_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_pass_rate": 1.0,
+      "transitivity_pass_rate": 1.0,
+      "locality_pass_rate": 0.0,
+      "gluing_pass_rate": 1.0,
+      "wall_time_seconds": {
+        "mean": 8.304799365997315,
+        "std": 1.5212944559138033,
+        "min": 7.08450174331665,
+        "max": 11.222568273544312,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.07693692892789841,
+        "std": 0.004509859440632062,
+        "min": 0.07017495483160019,
+        "max": 0.08185887336730957,
+        "n": 5
+      }
+    }
+  },
+  "A6_er_medium": {
+    "experiment_id": "A6_er_medium",
+    "experiment_type": "ablation",
+    "description": "Ablation: Pure optimization without LLM guidance on er_medium",
+    "hypothesis": "LLM guidance is essential for semantic grounding",
+    "claims_supported": [
+      "C1",
+      "C2"
+    ],
+    "dataset": "ER_n50_p0.15",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "shd": {
+        "mean": 193.2,
+        "std": 13.614697940094006,
+        "min": 180.0,
+        "max": 218.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "sid": {
+        "mean": 705.6,
+        "std": 57.22447029025258,
+        "min": 605.0,
+        "max": 763.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "wall_time_seconds": {
+        "mean": 0.4447624206542969,
+        "std": 0.07503008068297073,
+        "min": 0.3825407028198242,
+        "max": 0.5848047733306885,
+        "n": 5
+      },
+      "num_queries": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 1001.0,
+        "std": 0.0,
+        "min": 1001.0,
+        "max": 1001.0,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.005682751908898354,
+        "std": 0.0003816214927232254,
+        "min": 0.005109808407723904,
+        "max": 0.00612644013017416,
+        "n": 5
+      },
+      "final_spectral_radius": {
+        "mean": 0.1676815778017044,
+        "std": 0.008576146896293976,
+        "min": 0.15314564108848572,
+        "max": 0.17790251970291138,
+        "n": 5
+      },
+      "final_acyclicity": {
+        "mean": 0.000179290771484375,
+        "std": 2.1847261143915333e-05,
+        "min": 0.000152587890625,
+        "max": 0.000213623046875,
+        "n": 5
+      }
+    }
+  },
+  "X3_n100_d10": {
+    "experiment_id": "X3_n100_d10",
+    "experiment_type": "sheaf",
+    "description": "Sheaf Axiom: Locality (restrictions agree on overlaps) (n=100, depth=10)",
+    "hypothesis": "Locality error < epsilon for all overlapping contexts",
+    "claims_supported": [
+      "T3"
+    ],
+    "dataset": "SF_n100_d2.0",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "identity_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "transitivity_max": {
+        "mean": 2.8421321118798915e-06,
+        "std": 1.3316108452441734e-07,
+        "min": 2.6637440981858163e-06,
+        "max": 2.9813034885251e-06,
+        "n": 5
+      },
+      "transitivity_mean": {
+        "mean": 1.6730229347995295e-06,
+        "std": 3.5190048479175374e-08,
+        "min": 1.6293085222545067e-06,
+        "max": 1.725012730368507e-06,
+        "n": 5
+      },
+      "locality_max": {
+        "mean": 3.4458829402923583,
+        "std": 0.6041462933927798,
+        "min": 3.0163609981536865,
+        "max": 4.610300064086914,
+        "n": 5
+      },
+      "locality_mean": {
+        "mean": 0.8600414325077474,
+        "std": 0.080960509168302,
+        "min": 0.7656768807010051,
+        "max": 0.9594163618341911,
+        "n": 5
+      },
+      "gluing_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "gluing_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_pass_rate": 1.0,
+      "transitivity_pass_rate": 1.0,
+      "locality_pass_rate": 0.0,
+      "gluing_pass_rate": 1.0,
+      "wall_time_seconds": {
+        "mean": 31.0760139465332,
+        "std": 0.35710980253141306,
+        "min": 30.393816471099854,
+        "max": 31.355947494506836,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.5718250155448914,
+        "std": 0.02165572530436304,
+        "min": 0.529498279094696,
+        "max": 0.5866193771362305,
+        "n": 5
+      }
+    }
+  },
+  "A5_sachs": {
+    "experiment_id": "A5_sachs",
+    "experiment_type": "ablation",
+    "description": "Ablation: Fast model (thinking-off) vs Primary (thinking-on) on sachs",
+    "hypothesis": "Extended thinking improves complex causal reasoning",
+    "claims_supported": [
+      "C1"
+    ],
+    "dataset": "SACHS",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "shd": {
+        "mean": 18.4,
+        "std": 1.4966629547095764,
+        "min": 17.0,
+        "max": 21.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.18158241758241758,
+        "std": 0.15384705808211502,
+        "min": 0.0,
+        "max": 0.35714285714285715,
+        "n": 5
+      },
+      "sid": {
+        "mean": 22.0,
+        "std": 2.898275349237888,
+        "min": 19.0,
+        "max": 26.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.25757575757575757,
+        "std": 0.2172539191386051,
+        "min": 0.0,
+        "max": 0.5,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.1411764705882353,
+        "std": 0.12112506048220001,
+        "min": 0.0,
+        "max": 0.29411764705882354,
+        "n": 5
+      },
+      "wall_time_seconds": {
+        "mean": 0.3967289447784424,
+        "std": 0.05089601029265438,
+        "min": 0.33211779594421387,
+        "max": 0.46469545364379883,
+        "n": 5
+      },
+      "num_queries": {
+        "mean": 39.0,
+        "std": 25.73713270743266,
+        "min": 6.0,
+        "max": 60.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 631.8,
+        "std": 452.45216321728424,
+        "min": 53.0,
+        "max": 1001.0,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.028783149272203445,
+        "std": 0.0247911201853621,
+        "min": 5.626678466796875e-05,
+        "max": 0.058814410120248795,
+        "n": 5
+      },
+      "final_spectral_radius": {
+        "mean": 0.3010783404111862,
+        "std": 0.13100075838976938,
+        "min": 0.1334296017885208,
+        "max": 0.4675673246383667,
+        "n": 5
+      },
+      "final_acyclicity": {
+        "mean": 0.012920188903808593,
+        "std": 0.012135268336824987,
+        "min": 5.626678466796875e-05,
+        "max": 0.030576705932617188,
+        "n": 5
+      }
+    }
+  },
+  "X1_n30_d3": {
+    "experiment_id": "X1_n30_d3",
+    "experiment_type": "sheaf",
+    "description": "Sheaf Axiom: Identity (rho_UU = id) (n=30, depth=3)",
+    "hypothesis": "Identity axiom holds to numerical precision (<1e-6)",
+    "claims_supported": [
+      "T1"
+    ],
+    "dataset": "SF_n30_d2.0",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "identity_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "transitivity_max": {
+        "mean": 2.462979152895173e-06,
+        "std": 7.579779432114626e-08,
+        "min": 2.3847061072501674e-06,
+        "max": 2.596734464788142e-06,
+        "n": 5
+      },
+      "transitivity_mean": {
+        "mean": 1.6316209699512537e-06,
+        "std": 2.1723405868715305e-08,
+        "min": 1.6016799191256706e-06,
+        "max": 1.657647565878051e-06,
+        "n": 5
+      },
+      "locality_max": {
+        "mean": 1.2529892802238465,
+        "std": 0.26501054923943046,
+        "min": 0.826255738735199,
+        "max": 1.645764708518982,
+        "n": 5
+      },
+      "locality_mean": {
+        "mean": 0.3909577249887992,
+        "std": 0.06629593994297597,
+        "min": 0.32553995167836547,
+        "max": 0.5147544744593854,
+        "n": 5
+      },
+      "gluing_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "gluing_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_pass_rate": 1.0,
+      "transitivity_pass_rate": 1.0,
+      "locality_pass_rate": 0.0,
+      "gluing_pass_rate": 1.0,
+      "wall_time_seconds": {
+        "mean": 3.1844634056091308,
+        "std": 0.18039450420938052,
+        "min": 3.0042707920074463,
+        "max": 3.522533655166626,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.0062470176257193085,
+        "std": 0.0018574655970994588,
+        "min": 0.004411228932440281,
+        "max": 0.009174689650535583,
+        "n": 5
+      }
+    }
+  },
+  "X3_n30_d3": {
+    "experiment_id": "X3_n30_d3",
+    "experiment_type": "sheaf",
+    "description": "Sheaf Axiom: Locality (restrictions agree on overlaps) (n=30, depth=3)",
+    "hypothesis": "Locality error < epsilon for all overlapping contexts",
+    "claims_supported": [
+      "T3"
+    ],
+    "dataset": "SF_n30_d2.0",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "identity_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "transitivity_max": {
+        "mean": 2.462979152895173e-06,
+        "std": 7.579779432114626e-08,
+        "min": 2.3847061072501674e-06,
+        "max": 2.596734464788142e-06,
+        "n": 5
+      },
+      "transitivity_mean": {
+        "mean": 1.6316209699512537e-06,
+        "std": 2.1723405868715305e-08,
+        "min": 1.6016799191256706e-06,
+        "max": 1.657647565878051e-06,
+        "n": 5
+      },
+      "locality_max": {
+        "mean": 1.2529892802238465,
+        "std": 0.26501054923943046,
+        "min": 0.826255738735199,
+        "max": 1.645764708518982,
+        "n": 5
+      },
+      "locality_mean": {
+        "mean": 0.3909577249887992,
+        "std": 0.06629593994297597,
+        "min": 0.32553995167836547,
+        "max": 0.5147544744593854,
+        "n": 5
+      },
+      "gluing_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "gluing_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_pass_rate": 1.0,
+      "transitivity_pass_rate": 1.0,
+      "locality_pass_rate": 0.0,
+      "gluing_pass_rate": 1.0,
+      "wall_time_seconds": {
+        "mean": 3.230002498626709,
+        "std": 0.21084313903421606,
+        "min": 2.9960410594940186,
+        "max": 3.4856221675872803,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.0062470176257193085,
+        "std": 0.0018574655970994588,
+        "min": 0.004411228932440281,
+        "max": 0.009174689650535583,
+        "n": 5
+      }
+    }
+  },
+  "A3_er_medium": {
+    "experiment_id": "A3_er_medium",
+    "experiment_type": "ablation",
+    "description": "Ablation: Without spectral regularization (lambda_spec=0) on er_medium",
+    "hypothesis": "Spectral regularization prevents numerical instability",
+    "claims_supported": [
+      "C4"
+    ],
+    "dataset": "ER_n50_p0.15",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "shd": {
+        "mean": 193.8,
+        "std": 14.260434775980709,
+        "min": 180.0,
+        "max": 220.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "sid": {
+        "mean": 705.6,
+        "std": 57.325735930731845,
+        "min": 605.0,
+        "max": 763.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "wall_time_seconds": {
+        "mean": 0.3963197708129883,
+        "std": 0.009301375174294498,
+        "min": 0.38222527503967285,
+        "max": 0.40691351890563965,
+        "n": 5
+      },
+      "num_queries": {
+        "mean": 60.0,
+        "std": 0.0,
+        "min": 60.0,
+        "max": 60.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 1001.0,
+        "std": 0.0,
+        "min": 1001.0,
+        "max": 1001.0,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.00265960693359375,
+        "std": 0.0002928972156929881,
+        "min": 0.002361297607421875,
+        "max": 0.003162384033203125,
+        "n": 5
+      },
+      "final_spectral_radius": {
+        "mean": 0.32903847098350525,
+        "std": 0.016607592348044906,
+        "min": 0.30828961730003357,
+        "max": 0.3519033193588257,
+        "n": 5
+      },
+      "final_acyclicity": {
+        "mean": 0.002657318115234375,
+        "std": 0.0002930680742378398,
+        "min": 0.00235748291015625,
+        "max": 0.0031585693359375,
+        "n": 5
+      }
+    }
+  },
+  "A1_sachs": {
+    "experiment_id": "A1_sachs",
+    "experiment_type": "ablation",
+    "description": "Ablation: Standard SGD vs Natural Gradient on sachs",
+    "hypothesis": "Natural gradient improves convergence speed and accuracy",
+    "claims_supported": [
+      "C2"
+    ],
+    "dataset": "SACHS",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "shd": {
+        "mean": 16.4,
+        "std": 0.8,
+        "min": 15.0,
+        "max": 17.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.08538011695906432,
+        "std": 0.07911829017678484,
+        "min": 0.0,
+        "max": 0.21052631578947367,
+        "n": 5
+      },
+      "sid": {
+        "mean": 18.2,
+        "std": 1.1661903789690602,
+        "min": 16.0,
+        "max": 19.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.5,
+        "std": 0.4472135954999579,
+        "min": 0.0,
+        "max": 1.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.047058823529411764,
+        "std": 0.04401949866792872,
+        "min": 0.0,
+        "max": 0.11764705882352941,
+        "n": 5
+      },
+      "wall_time_seconds": {
+        "mean": 0.5083233833312988,
+        "std": 0.18323901531600986,
+        "min": 0.3522188663482666,
+        "max": 0.7720556259155273,
+        "n": 5
+      },
+      "num_queries": {
+        "mean": 11.4,
+        "std": 7.914543574963751,
+        "min": 6.0,
+        "max": 27.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 150.8,
+        "std": 147.30702630899856,
+        "min": 53.0,
+        "max": 442.0,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 7.476806640625e-05,
+        "std": 1.566582427855001e-05,
+        "min": 5.14984130859375e-05,
+        "max": 9.918212890625e-05,
+        "n": 5
+      },
+      "final_spectral_radius": {
+        "mean": 0.14139502346515656,
+        "std": 0.0458076246644654,
+        "min": 0.101075679063797,
+        "max": 0.228559672832489,
+        "n": 5
+      },
+      "final_acyclicity": {
+        "mean": 7.43865966796875e-05,
+        "std": 1.5078914929239174e-05,
+        "min": 5.14984130859375e-05,
+        "max": 9.72747802734375e-05,
+        "n": 5
+      }
+    }
+  },
+  "X4_n30_d3": {
+    "experiment_id": "X4_n30_d3",
+    "experiment_type": "sheaf",
+    "description": "Sheaf Axiom: Gluing (reconstruct global from local) (n=30, depth=3)",
+    "hypothesis": "Gluing produces SHD=0 reconstruction",
+    "claims_supported": [
+      "T4"
+    ],
+    "dataset": "SF_n30_d2.0",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "identity_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "transitivity_max": {
+        "mean": 2.462979152895173e-06,
+        "std": 7.579779432114626e-08,
+        "min": 2.3847061072501674e-06,
+        "max": 2.596734464788142e-06,
+        "n": 5
+      },
+      "transitivity_mean": {
+        "mean": 1.6316209699512537e-06,
+        "std": 2.1723405868715305e-08,
+        "min": 1.6016799191256706e-06,
+        "max": 1.657647565878051e-06,
+        "n": 5
+      },
+      "locality_max": {
+        "mean": 1.2529892802238465,
+        "std": 0.26501054923943046,
+        "min": 0.826255738735199,
+        "max": 1.645764708518982,
+        "n": 5
+      },
+      "locality_mean": {
+        "mean": 0.3909577249887992,
+        "std": 0.06629593994297597,
+        "min": 0.32553995167836547,
+        "max": 0.5147544744593854,
+        "n": 5
+      },
+      "gluing_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "gluing_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_pass_rate": 1.0,
+      "transitivity_pass_rate": 1.0,
+      "locality_pass_rate": 0.0,
+      "gluing_pass_rate": 1.0,
+      "wall_time_seconds": {
+        "mean": 3.170007276535034,
+        "std": 0.22618507168192692,
+        "min": 2.977917432785034,
+        "max": 3.613476276397705,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.0062470176257193085,
+        "std": 0.0018574655970994588,
+        "min": 0.004411228932440281,
+        "max": 0.009174689650535583,
+        "n": 5
+      }
+    }
+  },
+  "X4_n100_d10": {
+    "experiment_id": "X4_n100_d10",
+    "experiment_type": "sheaf",
+    "description": "Sheaf Axiom: Gluing (reconstruct global from local) (n=100, depth=10)",
+    "hypothesis": "Gluing produces SHD=0 reconstruction",
+    "claims_supported": [
+      "T4"
+    ],
+    "dataset": "SF_n100_d2.0",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "identity_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "transitivity_max": {
+        "mean": 2.8421321118798915e-06,
+        "std": 1.3316108452441734e-07,
+        "min": 2.6637440981858163e-06,
+        "max": 2.9813034885251e-06,
+        "n": 5
+      },
+      "transitivity_mean": {
+        "mean": 1.6730229347995295e-06,
+        "std": 3.5190048479175374e-08,
+        "min": 1.6293085222545067e-06,
+        "max": 1.725012730368507e-06,
+        "n": 5
+      },
+      "locality_max": {
+        "mean": 3.4458829402923583,
+        "std": 0.6041462933927798,
+        "min": 3.0163609981536865,
+        "max": 4.610300064086914,
+        "n": 5
+      },
+      "locality_mean": {
+        "mean": 0.8600414325077474,
+        "std": 0.080960509168302,
+        "min": 0.7656768807010051,
+        "max": 0.9594163618341911,
+        "n": 5
+      },
+      "gluing_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "gluing_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_pass_rate": 1.0,
+      "transitivity_pass_rate": 1.0,
+      "locality_pass_rate": 0.0,
+      "gluing_pass_rate": 1.0,
+      "wall_time_seconds": {
+        "mean": 34.30431079864502,
+        "std": 4.576499032388802,
+        "min": 31.239837408065796,
+        "max": 43.25967621803284,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.5718250155448914,
+        "std": 0.02165572530436304,
+        "min": 0.529498279094696,
+        "max": 0.5866193771362305,
+        "n": 5
+      }
+    }
+  },
+  "X2_n100_d10": {
+    "experiment_id": "X2_n100_d10",
+    "experiment_type": "sheaf",
+    "description": "Sheaf Axiom: Transitivity (rho_ZU = rho_ZV o rho_VU) (n=100, depth=10)",
+    "hypothesis": "Transitivity error < epsilon for all context triples",
+    "claims_supported": [
+      "T2"
+    ],
+    "dataset": "SF_n100_d2.0",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "identity_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "transitivity_max": {
+        "mean": 2.8421321118798915e-06,
+        "std": 1.3316108452441734e-07,
+        "min": 2.6637440981858163e-06,
+        "max": 2.9813034885251e-06,
+        "n": 5
+      },
+      "transitivity_mean": {
+        "mean": 1.6730229347995295e-06,
+        "std": 3.5190048479175374e-08,
+        "min": 1.6293085222545067e-06,
+        "max": 1.725012730368507e-06,
+        "n": 5
+      },
+      "locality_max": {
+        "mean": 3.4458829402923583,
+        "std": 0.6041462933927798,
+        "min": 3.0163609981536865,
+        "max": 4.610300064086914,
+        "n": 5
+      },
+      "locality_mean": {
+        "mean": 0.8600414325077474,
+        "std": 0.080960509168302,
+        "min": 0.7656768807010051,
+        "max": 0.9594163618341911,
+        "n": 5
+      },
+      "gluing_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "gluing_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_pass_rate": 1.0,
+      "transitivity_pass_rate": 1.0,
+      "locality_pass_rate": 0.0,
+      "gluing_pass_rate": 1.0,
+      "wall_time_seconds": {
+        "mean": 30.965426635742187,
+        "std": 0.37757098088593916,
+        "min": 30.485296964645386,
+        "max": 31.583060026168823,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.5718250155448914,
+        "std": 0.02165572530436304,
+        "min": 0.529498279094696,
+        "max": 0.5866193771362305,
+        "n": 5
+      }
+    }
+  },
+  "A6_sachs": {
+    "experiment_id": "A6_sachs",
+    "experiment_type": "ablation",
+    "description": "Ablation: Pure optimization without LLM guidance on sachs",
+    "hypothesis": "LLM guidance is essential for semantic grounding",
+    "claims_supported": [
+      "C1",
+      "C2"
+    ],
+    "dataset": "SACHS",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "shd": {
+        "mean": 17.0,
+        "std": 0.0,
+        "min": 17.0,
+        "max": 17.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "sid": {
+        "mean": 19.0,
+        "std": 0.0,
+        "min": 19.0,
+        "max": 19.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "wall_time_seconds": {
+        "mean": 0.3805062294006348,
+        "std": 0.027454962871888495,
+        "min": 0.35190606117248535,
+        "max": 0.4225432872772217,
+        "n": 5
+      },
+      "num_queries": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 897.0,
+        "std": 158.0683396509244,
+        "min": 593.0,
+        "max": 1001.0,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.00015583038330078126,
+        "std": 6.608240492658094e-05,
+        "min": 9.918212890625e-05,
+        "max": 0.0002574920654296875,
+        "n": 5
+      },
+      "final_spectral_radius": {
+        "mean": 0.1763990432024002,
+        "std": 0.0106615016237156,
+        "min": 0.15610389411449432,
+        "max": 0.18655526638031006,
+        "n": 5
+      },
+      "final_acyclicity": {
+        "mean": 0.00015544891357421875,
+        "std": 6.605046695871561e-05,
+        "min": 9.918212890625e-05,
+        "max": 0.0002574920654296875,
+        "n": 5
+      }
+    }
+  },
+  "A5_er_medium": {
+    "experiment_id": "A5_er_medium",
+    "experiment_type": "ablation",
+    "description": "Ablation: Fast model (thinking-off) vs Primary (thinking-on) on er_medium",
+    "hypothesis": "Extended thinking improves complex causal reasoning",
+    "claims_supported": [
+      "C1"
+    ],
+    "dataset": "ER_n50_p0.15",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "shd": {
+        "mean": 193.2,
+        "std": 13.614697940094006,
+        "min": 180.0,
+        "max": 218.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "sid": {
+        "mean": 705.6,
+        "std": 57.22447029025258,
+        "min": 605.0,
+        "max": 763.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "wall_time_seconds": {
+        "mean": 0.46137375831604005,
+        "std": 0.08295496767176072,
+        "min": 0.3865683078765869,
+        "max": 0.614238977432251,
+        "n": 5
+      },
+      "num_queries": {
+        "mean": 60.0,
+        "std": 0.0,
+        "min": 60.0,
+        "max": 60.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 1001.0,
+        "std": 0.0,
+        "min": 1001.0,
+        "max": 1001.0,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.004987584520131349,
+        "std": 0.00029809459900728843,
+        "min": 0.004605902824550867,
+        "max": 0.0053954957984387875,
+        "n": 5
+      },
+      "final_spectral_radius": {
+        "mean": 0.1623733013868332,
+        "std": 0.009305879493442384,
+        "min": 0.14595894515514374,
+        "max": 0.17472003400325775,
+        "n": 5
+      },
+      "final_acyclicity": {
+        "mean": 0.00018310546875,
+        "std": 2.8239067876162334e-05,
+        "min": 0.000152587890625,
+        "max": 0.0002288818359375,
+        "n": 5
+      }
+    }
+  },
+  "A2_sachs": {
+    "experiment_id": "A2_sachs",
+    "experiment_type": "ablation",
+    "description": "Ablation: Without Frobenius descent loss (lambda_descent=0) on sachs",
+    "hypothesis": "Sheaf consistency is essential for multi-source integration",
+    "claims_supported": [
+      "C1"
+    ],
+    "dataset": "SACHS",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "shd": {
+        "mean": 16.4,
+        "std": 0.8,
+        "min": 15.0,
+        "max": 17.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.08538011695906432,
+        "std": 0.07911829017678484,
+        "min": 0.0,
+        "max": 0.21052631578947367,
+        "n": 5
+      },
+      "sid": {
+        "mean": 18.2,
+        "std": 1.1661903789690602,
+        "min": 16.0,
+        "max": 19.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.5,
+        "std": 0.4472135954999579,
+        "min": 0.0,
+        "max": 1.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.047058823529411764,
+        "std": 0.04401949866792872,
+        "min": 0.0,
+        "max": 0.11764705882352941,
+        "n": 5
+      },
+      "wall_time_seconds": {
+        "mean": 0.36811413764953616,
+        "std": 0.0075369148885639494,
+        "min": 0.3605828285217285,
+        "max": 0.378598690032959,
+        "n": 5
+      },
+      "num_queries": {
+        "mean": 11.4,
+        "std": 7.914543574963751,
+        "min": 6.0,
+        "max": 27.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 150.8,
+        "std": 147.30702630899856,
+        "min": 53.0,
+        "max": 442.0,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 7.476806640625e-05,
+        "std": 1.566582427855001e-05,
+        "min": 5.14984130859375e-05,
+        "max": 9.918212890625e-05,
+        "n": 5
+      },
+      "final_spectral_radius": {
+        "mean": 0.14143595546483995,
+        "std": 0.045771654531718026,
+        "min": 0.10128025710582733,
+        "max": 0.22855962812900543,
+        "n": 5
+      },
+      "final_acyclicity": {
+        "mean": 7.43865966796875e-05,
+        "std": 1.5078914929239174e-05,
+        "min": 5.14984130859375e-05,
+        "max": 9.72747802734375e-05,
+        "n": 5
+      }
+    }
+  },
+  "E3_latent_20o_3l": {
+    "experiment_id": "E3_latent_20o_3l",
+    "experiment_type": "main",
+    "description": "Hidden Confounders: 20 observed, 3 latent",
+    "hypothesis": "Algebraic projection correctly handles hidden confounders",
+    "claims_supported": [
+      "C3"
+    ],
+    "dataset": "Latent_o20_l3",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "shd": {
+        "mean": 42.6,
+        "std": 5.851495535331117,
+        "min": 35.0,
+        "max": 52.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "sid": {
+        "mean": 88.6,
+        "std": 20.943734146517425,
+        "min": 65.0,
+        "max": 113.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "wall_time_seconds": {
+        "mean": 0.41401138305664065,
+        "std": 0.02858839073337547,
+        "min": 0.3657550811767578,
+        "max": 0.4434092044830322,
+        "n": 5
+      },
+      "num_queries": {
+        "mean": 79.8,
+        "std": 17.451647486698786,
+        "min": 45.0,
+        "max": 90.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 1313.8,
+        "std": 288.1960443864558,
+        "min": 743.0,
+        "max": 1501.0,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.000110626220703125,
+        "std": 1.9301011109426144e-05,
+        "min": 9.918212890625e-05,
+        "max": 0.000148773193359375,
+        "n": 5
+      },
+      "final_spectral_radius": {
+        "mean": 0.16792260110378265,
+        "std": 0.02101311617720298,
+        "min": 0.13624994456768036,
+        "max": 0.1953551173210144,
+        "n": 5
+      },
+      "final_acyclicity": {
+        "mean": 0.000110626220703125,
+        "std": 1.9301011109426144e-05,
+        "min": 9.918212890625e-05,
+        "max": 0.000148773193359375,
+        "n": 5
+      }
+    }
+  },
+  "X2_n30_d3": {
+    "experiment_id": "X2_n30_d3",
+    "experiment_type": "sheaf",
+    "description": "Sheaf Axiom: Transitivity (rho_ZU = rho_ZV o rho_VU) (n=30, depth=3)",
+    "hypothesis": "Transitivity error < epsilon for all context triples",
+    "claims_supported": [
+      "T2"
+    ],
+    "dataset": "SF_n30_d2.0",
+    "n_seeds": 5,
+    "seeds": [
+      46,
+      42,
+      43,
+      44,
+      45
+    ],
+    "metrics": {
+      "identity_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "transitivity_max": {
+        "mean": 2.462979152895173e-06,
+        "std": 7.579779432114626e-08,
+        "min": 2.3847061072501674e-06,
+        "max": 2.596734464788142e-06,
+        "n": 5
+      },
+      "transitivity_mean": {
+        "mean": 1.6316209699512537e-06,
+        "std": 2.1723405868715305e-08,
+        "min": 1.6016799191256706e-06,
+        "max": 1.657647565878051e-06,
+        "n": 5
+      },
+      "locality_max": {
+        "mean": 1.2529892802238465,
+        "std": 0.26501054923943046,
+        "min": 0.826255738735199,
+        "max": 1.645764708518982,
+        "n": 5
+      },
+      "locality_mean": {
+        "mean": 0.3909577249887992,
+        "std": 0.06629593994297597,
+        "min": 0.32553995167836547,
+        "max": 0.5147544744593854,
+        "n": 5
+      },
+      "gluing_max": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "gluing_mean": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "identity_pass_rate": 1.0,
+      "transitivity_pass_rate": 1.0,
+      "locality_pass_rate": 0.0,
+      "gluing_pass_rate": 1.0,
+      "wall_time_seconds": {
+        "mean": 3.101284885406494,
+        "std": 0.1686077291807373,
+        "min": 2.9792935848236084,
+        "max": 3.4338161945343018,
+        "n": 5
+      },
+      "final_loss_total": {
+        "mean": 0.0062470176257193085,
+        "std": 0.0018574655970994588,
+        "min": 0.004411228932440281,
+        "max": 0.009174689650535583,
+        "n": 5
+      }
+    }
+  }
+}

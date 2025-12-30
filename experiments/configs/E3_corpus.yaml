@@ -1,0 +1,49 @@
+# E3: Corpus Integration (5 papers)
+# =============================================================================
+experiment_id: "E3"
+description: "Integrate causal knowledge from 5-paper corpus"
+hypothesis: "Corpus size improves graph accuracy through sheaf consistency constraints"
+claims_supported: ["C3", "C4", "T2"]
+
+# Method configuration
+method: "holograph"
+n_vars: 50
+learning_rate: 0.01
+lambda_descent: 1.0
+lambda_spec: 0.1
+lambda_reg: 0.0001
+max_steps: 2000
+
+# Dataset configuration
+dataset: "sf"  # Scale-free synthetic
+dataset_kwargs:
+  n_vars: 50
+  avg_degree: 3.0
+seed: 42
+
+# LLM configuration
+llm_provider: "sglang"
+llm_model_role: "primary"
+use_llm: true
+use_embeddings: true
+
+# Corpus specific
+num_contexts: 5
+context_overlap_ratio: 0.25
+
+# Query configuration
+use_active_queries: true
+max_queries_per_step: 5
+query_interval: 40
+
+# Output configuration
+output_dir: "experiments/outputs"
+save_checkpoints: true
+checkpoint_interval: 200
+
+# Evaluation
+metrics:
+  - shd
+  - f1
+  - sid
+  - descent_loss

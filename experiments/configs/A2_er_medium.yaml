@@ -1,0 +1,32 @@
+# Ablation: Without Frobenius descent loss (lambda_descent=0) on er_medium
+# Hypothesis: Sheaf consistency is essential for multi-source integration
+
+method: holograph
+learning_rate: 0.01
+lambda_descent: 0.0
+lambda_spec: 0.1
+lambda_reg: 0.0001
+max_steps: 1000
+use_natural_gradient: true
+llm_provider: sglang
+llm_model_role: primary
+use_llm: true
+use_embeddings: false
+use_active_queries: true
+max_queries_per_step: 3
+query_interval: 50
+max_total_queries: 100
+max_total_tokens: 500000
+output_dir: experiments/outputs
+save_checkpoints: true
+checkpoint_interval: 100
+experiment_id: A2_er_medium
+description: 'Ablation: Without Frobenius descent loss (lambda_descent=0) on er_medium'
+hypothesis: Sheaf consistency is essential for multi-source integration
+claims_supported:
+- C1
+dataset: er
+n_vars: 50
+seed: 42
+dataset_kwargs:
+  edge_prob: 0.15

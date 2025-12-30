@@ -1,0 +1,84 @@
+{
+  "_metadata": {
+    "experiment_id": "A1_sachs",
+    "description": "Ablation: Standard SGD vs Natural Gradient on sachs",
+    "hypothesis": "Natural gradient improves convergence speed and accuracy",
+    "claims_supported": [
+      "C2"
+    ],
+    "config": {
+      "experiment_id": "A1_sachs",
+      "description": "Ablation: Standard SGD vs Natural Gradient on sachs",
+      "hypothesis": "Natural gradient improves convergence speed and accuracy",
+      "claims_supported": [
+        "C2"
+      ],
+      "method": "holograph",
+      "n_vars": 11,
+      "learning_rate": 0.01,
+      "lambda_descent": 1.0,
+      "lambda_spec": 0.1,
+      "lambda_reg": 0.0001,
+      "max_steps": 1000,
+      "use_natural_gradient": false,
+      "dataset": "sachs",
+      "dataset_kwargs": {},
+      "seed": 46,
+      "llm_provider": "sglang",
+      "llm_model_role": "primary",
+      "llm_api_key": null,
+      "use_llm": true,
+      "embedding_model": "Alibaba-NLP/gte-Qwen2-7B-instruct",
+      "embedding_api_key": null,
+      "use_embeddings": false,
+      "use_active_queries": true,
+      "max_queries_per_step": 3,
+      "query_interval": 50,
+      "max_total_queries": 100,
+      "max_total_tokens": 500000,
+      "output_dir": "experiments/outputs",
+      "save_checkpoints": true,
+      "checkpoint_interval": 100
+    },
+    "git_commit": "unknown",
+    "slurm_job_id": "2764861",
+    "seed": 46,
+    "timestamp": "2025-12-30T19:37:42.827493",
+    "wall_time_seconds": 0.3840012550354004,
+    "dataset": "SACHS"
+  },
+  "results": {
+    "shd": 17,
+    "shd_undirected": 17,
+    "sid": 19.0,
+    "precision": 0.5,
+    "recall": 0.058823529411764705,
+    "f1": 0.10526315789473684,
+    "tp": 1,
+    "fp": 1,
+    "fn": 16,
+    "final_loss_total": 9.918212890625e-05,
+    "final_spectral_radius": 0.101075679063797,
+    "final_acyclicity": 9.72747802734375e-05,
+    "wall_time_seconds": 0.3522188663482666,
+    "num_queries": 27,
+    "training_steps": 442,
+    "final_loss": {
+      "total": 9.918212890625e-05,
+      "spectral_radius": 0.101075679063797,
+      "acyclicity": 9.72747802734375e-05
+    },
+    "llm_usage": {
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "total_queries": 0,
+      "model": "deepseek-ai/DeepSeek-V3.2-Exp-thinking-on",
+      "model_role": "primary"
+    }
+  },
+  "artifacts": {
+    "learned_graph": "experiments/outputs/A1_sachs/seed_46/graph.npz",
+    "training_log": "experiments/outputs/A1_sachs/seed_46/training.csv",
+    "checkpoint": "experiments/outputs/A1_sachs/seed_46/checkpoint.pt"
+  }
+}

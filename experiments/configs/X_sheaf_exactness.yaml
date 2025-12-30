@@ -1,0 +1,19 @@
+# X1-X4: Sheaf Exactness Validation
+experiment_id: "X_sheaf_exactness"
+description: "Presheaf axiom verification (Identity, Transitivity, Locality, Gluing)"
+hypothesis: "All axioms hold within numerical tolerance"
+claims_supported: ["T1", "T2", "T3", "T4"]
+
+method: "holograph"
+n_vars: 50
+learning_rate: 0.01
+lambda_descent: 1.0
+lambda_spec: 0.1
+lambda_reg: 0.0001
+max_steps: 500
+
+dataset: "synthetic"
+seed: 42
+output_dir: "experiments/outputs"
+save_checkpoints: true
+checkpoint_interval: 100

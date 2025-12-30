@@ -1,0 +1,88 @@
+{
+  "_metadata": {
+    "experiment_id": "E3_latent_50o_8l",
+    "description": "Hidden Confounders: 50 observed, 8 latent",
+    "hypothesis": "Algebraic projection correctly handles hidden confounders",
+    "claims_supported": [
+      "C3"
+    ],
+    "config": {
+      "experiment_id": "E3_latent_50o_8l",
+      "description": "Hidden Confounders: 50 observed, 8 latent",
+      "hypothesis": "Algebraic projection correctly handles hidden confounders",
+      "claims_supported": [
+        "C3"
+      ],
+      "method": "holograph",
+      "n_vars": 50,
+      "learning_rate": 0.01,
+      "lambda_descent": 1.0,
+      "lambda_spec": 0.1,
+      "lambda_reg": 0.0001,
+      "max_steps": 1500,
+      "use_natural_gradient": true,
+      "dataset": "latent",
+      "dataset_kwargs": {
+        "n_observed": 50,
+        "n_latent": 8,
+        "edge_prob": 0.15
+      },
+      "seed": 46,
+      "llm_provider": "sglang",
+      "llm_model_role": "primary",
+      "llm_api_key": null,
+      "use_llm": true,
+      "embedding_model": "Alibaba-NLP/gte-Qwen2-7B-instruct",
+      "embedding_api_key": null,
+      "use_embeddings": false,
+      "use_active_queries": true,
+      "max_queries_per_step": 3,
+      "query_interval": 50,
+      "max_total_queries": 100,
+      "max_total_tokens": 500000,
+      "output_dir": "experiments/outputs",
+      "save_checkpoints": true,
+      "checkpoint_interval": 100
+    },
+    "git_commit": "unknown",
+    "slurm_job_id": "2764878",
+    "seed": 46,
+    "timestamp": "2025-12-30T19:47:00.771358",
+    "wall_time_seconds": 0.4791290760040283,
+    "dataset": "Latent_o50_l8"
+  },
+  "results": {
+    "shd": 175,
+    "shd_undirected": 175,
+    "sid": 632.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "tp": 0,
+    "fp": 0,
+    "fn": 175,
+    "final_loss_total": 0.0004306678310967982,
+    "final_spectral_radius": 0.162120521068573,
+    "final_acyclicity": 0.000141143798828125,
+    "wall_time_seconds": 0.4447009563446045,
+    "num_queries": 90,
+    "training_steps": 1501,
+    "final_loss": {
+      "total": 0.0004306678310967982,
+      "spectral_radius": 0.162120521068573,
+      "acyclicity": 0.000141143798828125
+    },
+    "llm_usage": {
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "total_queries": 0,
+      "model": "deepseek-ai/DeepSeek-V3.2-Exp-thinking-on",
+      "model_role": "primary"
+    }
+  },
+  "artifacts": {
+    "learned_graph": "experiments/outputs/E3_latent_50o_8l/seed_46/graph.npz",
+    "training_log": "experiments/outputs/E3_latent_50o_8l/seed_46/training.csv",
+    "checkpoint": "experiments/outputs/E3_latent_50o_8l/seed_46/checkpoint.pt"
+  }
+}

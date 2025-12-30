@@ -1,0 +1,32 @@
+# Ablation: Random queries vs EFE-based selection on er_medium
+# Hypothesis: EFE-based selection improves query efficiency
+
+method: holograph
+learning_rate: 0.01
+lambda_descent: 1.0
+lambda_spec: 0.1
+lambda_reg: 0.0001
+max_steps: 1000
+use_natural_gradient: true
+llm_provider: sglang
+llm_model_role: primary
+use_llm: true
+use_embeddings: false
+use_active_queries: false
+max_queries_per_step: 3
+query_interval: 50
+max_total_queries: 100
+max_total_tokens: 500000
+output_dir: experiments/outputs
+save_checkpoints: true
+checkpoint_interval: 100
+experiment_id: A4_er_medium
+description: 'Ablation: Random queries vs EFE-based selection on er_medium'
+hypothesis: EFE-based selection improves query efficiency
+claims_supported:
+- C7
+dataset: er
+n_vars: 50
+seed: 42
+dataset_kwargs:
+  edge_prob: 0.15

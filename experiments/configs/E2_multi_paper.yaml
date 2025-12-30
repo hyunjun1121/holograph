@@ -1,0 +1,48 @@
+# E2: Multi-Paper Fusion
+# =============================================================================
+experiment_id: "E2"
+description: "Fuse causal information from multiple papers using sheaf consistency"
+hypothesis: "Sheaf-based fusion produces more accurate graphs than naive concatenation"
+claims_supported: ["C3", "T1", "T2"]
+
+# Method configuration
+method: "holograph"
+n_vars: 30
+learning_rate: 0.01
+lambda_descent: 1.0
+lambda_spec: 0.1
+lambda_reg: 0.0001
+max_steps: 1500
+
+# Dataset configuration
+dataset: "synthetic"
+dataset_kwargs:
+  n_vars: 30
+  edge_prob: 0.15
+seed: 42
+
+# LLM configuration
+llm_provider: "sglang"
+llm_model_role: "primary"
+use_llm: true
+use_embeddings: true
+
+# Multi-paper specific
+num_contexts: 3  # Simulate 3 papers
+context_overlap_ratio: 0.3
+
+# Query configuration
+use_active_queries: true
+max_queries_per_step: 5
+query_interval: 30
+
+# Output configuration
+output_dir: "experiments/outputs"
+save_checkpoints: true
+checkpoint_interval: 100
+
+# Evaluation
+metrics:
+  - shd
+  - f1
+  - descent_loss  # Sheaf consistency

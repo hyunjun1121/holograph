@@ -1,0 +1,50 @@
+# E4: Large Corpus Integration (20 papers)
+# =============================================================================
+experiment_id: "E4"
+description: "Integrate causal knowledge from 20-paper corpus"
+hypothesis: "HOLOGRAPH scales to large corpora while maintaining accuracy"
+claims_supported: ["C3", "C4", "T2", "S1"]
+
+# Method configuration
+method: "holograph"
+n_vars: 100
+learning_rate: 0.005
+lambda_descent: 1.0
+lambda_spec: 0.1
+lambda_reg: 0.0001
+max_steps: 3000
+
+# Dataset configuration
+dataset: "sf"
+dataset_kwargs:
+  n_vars: 100
+  avg_degree: 3.0
+seed: 42
+
+# LLM configuration
+llm_provider: "sglang"
+llm_model_role: "primary"
+use_llm: true
+use_embeddings: true
+
+# Corpus specific
+num_contexts: 20
+context_overlap_ratio: 0.2
+
+# Query configuration
+use_active_queries: true
+max_queries_per_step: 10
+query_interval: 50
+
+# Output configuration
+output_dir: "experiments/outputs"
+save_checkpoints: true
+checkpoint_interval: 300
+
+# Evaluation
+metrics:
+  - shd
+  - f1
+  - sid
+  - descent_loss
+  - wall_time

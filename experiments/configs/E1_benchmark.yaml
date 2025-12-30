@@ -1,0 +1,50 @@
+# E1: Single Paper Causal Extraction Benchmark
+# =============================================================================
+experiment_id: "E1"
+description: "Extract causal graph from single scientific paper"
+hypothesis: "HOLOGRAPH can extract structured causal graphs from unstructured text with higher accuracy than baselines"
+claims_supported: ["C1", "C2"]
+
+# Method configuration
+method: "holograph"
+n_vars: 20
+learning_rate: 0.01
+lambda_descent: 1.0
+lambda_spec: 0.1
+lambda_reg: 0.0001
+max_steps: 1000
+
+# Dataset configuration
+dataset: "sachs"
+seed: 42
+
+# LLM configuration
+llm_provider: "sglang"
+llm_model_role: "primary"  # Uses deepseek-ai/DeepSeek-V3.2-Exp-thinking-on
+use_llm: true
+use_embeddings: true
+
+# Query configuration
+use_active_queries: true
+max_queries_per_step: 3
+query_interval: 50
+max_initial_queries: 20
+
+# Output configuration
+output_dir: "experiments/outputs"
+save_checkpoints: true
+checkpoint_interval: 100
+
+# Evaluation metrics
+metrics:
+  - shd
+  - f1
+  - precision
+  - recall
+  - sid
+
+# Baselines to compare
+baselines:
+  - notears
+  - dagma
+  - random

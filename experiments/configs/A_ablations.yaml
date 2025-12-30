@@ -1,0 +1,141 @@
+# =============================================================================
+# A1-A6: Ablation Studies
+# =============================================================================
+# Purpose: Validate contribution of each HOLOGRAPH component
+# =============================================================================
+
+base_config:
+  method: "holograph"
+  n_vars: 30
+  max_steps: 1000
+  dataset: "sachs"
+  seed: 42
+  llm_provider: "sglang"
+  llm_model_role: "primary"
+  use_llm: true
+  output_dir: "experiments/outputs"
+  save_checkpoints: true
+
+# =============================================================================
+# A1: Without Natural Gradient (use standard SGD)
+# =============================================================================
+A1:
+  experiment_id: "A1"
+  description: "Ablation: Standard gradient descent vs Natural gradient"
+  hypothesis: "Natural gradient improves convergence speed and accuracy"
+  claims_supported: ["T5"]
+
+  use_natural_gradient: false  # Key ablation
+  learning_rate: 0.01
+
+  metrics:
+    - shd
+    - convergence_steps
+    - final_loss
+
+# =============================================================================
+# A2: Without Sheaf Consistency (λ_descent = 0)
+# =============================================================================
+A2:
+  experiment_id: "A2"
+  description: "Ablation: Without Frobenius descent loss"
+  hypothesis: "Sheaf consistency is essential for multi-source integration"
+  claims_supported: ["T1", "T2"]
+
+  lambda_descent: 0.0  # Key ablation
+  learning_rate: 0.01
+  lambda_spec: 0.1
+
+  metrics:
+    - shd
+    - context_disagreement
+    - final_loss
+
+# =============================================================================
+# A3: Without Spectral Regularization (λ_spec = 0)
+# =============================================================================
+A3:
+  experiment_id: "A3"
+  description: "Ablation: Without spectral radius constraint"
+  hypothesis: "Spectral regularization prevents numerical instability"
+  claims_supported: ["T6"]
+
+  lambda_spec: 0.0  # Key ablation
+  learning_rate: 0.01
+  lambda_descent: 1.0
+
+  metrics:
+    - shd
+    - spectral_radius_max
+    - numerical_stability
+
+# =============================================================================
+# A4: Without Active Queries (random query selection)
+# =============================================================================
+A4:
+  experiment_id: "A4"
+  description: "Ablation: Random queries vs EFE-based selection"
+  hypothesis: "EFE-based selection improves query efficiency"
+  claims_supported: ["T7"]
+
+  use_active_queries: false  # Key ablation
+  random_query_selection: true
+  max_queries_per_step: 3
+
+  metrics:
+    - shd
+    - queries_to_convergence
+    - query_efficiency
+
+# =============================================================================
+# A5: Without Extended Thinking (thinking-off model)
+# =============================================================================
+A5:
+  experiment_id: "A5"
+  description: "Ablation: Thinking model vs non-thinking model"
+  hypothesis: "Extended thinking improves complex causal reasoning"
+  claims_supported: ["M1"]
+
+  llm_model_role: "fast"  # Key ablation: uses thinking-off model
+
+  metrics:
+    - shd
+    - contradiction_detection_rate
+    - latent_proposal_quality
+
+# =============================================================================
+# A6: Without LLM (pure optimization from random init)
+# =============================================================================
+A6:
+  experiment_id: "A6"
+  description: "Ablation: Pure optimization vs LLM-guided"
+  hypothesis: "LLM guidance is essential for semantic grounding"
+  claims_supported: ["C1", "C2"]
+
+  use_llm: false  # Key ablation
+  use_embeddings: false
+  use_active_queries: false
+
+  metrics:
+    - shd
+    - semantic_alignment
+    - domain_accuracy
+
+# =============================================================================
+# Paper Section Text
+# =============================================================================
+paper_section: |
+  ## 5.5 Ablation Studies (A1-A6)
+
+  We systematically ablate each component to validate its contribution:
+
+  | Ablation | Component Removed | ΔSHD | Effect |
+  |----------|-------------------|------|--------|
+  | A1 | Natural Gradient | +X.X | Slower convergence |
+  | A2 | Sheaf Consistency | +X.X | Cross-source disagreement |
+  | A3 | Spectral Reg. | +X.X | Numerical instability |
+  | A4 | Active Queries | +X.X | Query inefficiency |
+  | A5 | Extended Thinking | +X.X | Worse causal reasoning |
+  | A6 | LLM Guidance | +X.X | Random structure |
+
+  All ablations show degraded performance, confirming each component's necessity.

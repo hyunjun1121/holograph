@@ -1,0 +1,29 @@
+# Dry Run Integration Test
+# Tests budget enforcement and config override
+
+experiment_id: "dry_run_test"
+description: "Integration test for HOLOGRAPH pipeline"
+hypothesis: "Pipeline runs end-to-end with budget enforcement"
+claims_supported: ["test"]
+
+# Data config
+dataset: "er"  # Erdos-Renyi random graph
+n_vars: 5
+seed: 123
+
+# Budget limits (P0: Test budget enforcement)
+max_total_queries: 5
+max_total_tokens: 10000
+
+# Model config (non-default to test override)
+learning_rate: 0.05
+max_steps: 100
+
+# Disable LLM for dry run (no API calls)
+use_llm: false
+use_embeddings: false
+use_active_queries: false
+
+# Output config
+output_dir: "experiments/outputs/dry_run"
+save_checkpoints: true

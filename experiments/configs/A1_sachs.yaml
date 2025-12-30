@@ -1,0 +1,30 @@
+# Ablation: Standard SGD vs Natural Gradient on sachs
+# Hypothesis: Natural gradient improves convergence speed and accuracy
+
+method: holograph
+learning_rate: 0.01
+lambda_descent: 1.0
+lambda_spec: 0.1
+lambda_reg: 0.0001
+max_steps: 1000
+use_natural_gradient: false
+llm_provider: sglang
+llm_model_role: primary
+use_llm: true
+use_embeddings: false
+use_active_queries: true
+max_queries_per_step: 3
+query_interval: 50
+max_total_queries: 100
+max_total_tokens: 500000
+output_dir: experiments/outputs
+save_checkpoints: true
+checkpoint_interval: 100
+experiment_id: A1_sachs
+description: 'Ablation: Standard SGD vs Natural Gradient on sachs'
+hypothesis: Natural gradient improves convergence speed and accuracy
+claims_supported:
+- C2
+dataset: sachs
+n_vars: 11
+seed: 42

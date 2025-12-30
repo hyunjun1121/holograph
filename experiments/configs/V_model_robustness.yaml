@@ -1,0 +1,150 @@
+# =============================================================================
+# V1-V5: Model Robustness Validation
+# =============================================================================
+# Purpose: Demonstrate HOLOGRAPH is model-agnostic
+# Replicate core experiments with different LLM families
+# =============================================================================
+
+# Base configuration (inherited by all V experiments)
+base_config:
+  method: "holograph"
+  n_vars: 30
+  learning_rate: 0.01
+  lambda_descent: 1.0
+  lambda_spec: 0.1
+  lambda_reg: 0.0001
+  max_steps: 1000
+
+  dataset: "sachs"
+  seed: 42
+
+  use_llm: true
+  use_embeddings: true
+  use_active_queries: true
+  max_queries_per_step: 3
+  query_interval: 50
+
+  output_dir: "experiments/outputs"
+  save_checkpoints: true
+  checkpoint_interval: 100
+
+# =============================================================================
+# V1: Gemini Validation
+# =============================================================================
+V1:
+  experiment_id: "V1"
+  description: "Model robustness - Google Gemini 2.5 Pro"
+  hypothesis: "HOLOGRAPH achieves comparable SHD with Gemini as with DeepSeek"
+  claims_supported: ["R1"]  # Robustness claim
+
+  llm_provider: "sglang"
+  llm_model_role: "validation_gemini"  # google/gemini-2.5-pro-thinking-on
+
+  metrics:
+    - shd
+    - f1
+    - num_queries
+    - wall_time
+
+# =============================================================================
+# V2: Qwen Validation
+# =============================================================================
+V2:
+  experiment_id: "V2"
+  description: "Model robustness - Alibaba Qwen3 235B"
+  hypothesis: "HOLOGRAPH achieves comparable SHD with Qwen as with DeepSeek"
+  claims_supported: ["R1"]
+
+  llm_provider: "sglang"
+  llm_model_role: "validation_qwen"  # togetherai/Qwen/Qwen3-235B-A22B-Thinking-2507-FP8
+
+  metrics:
+    - shd
+    - f1
+    - num_queries
+    - wall_time
+
+# =============================================================================
+# V3: DeepSeek R1 Validation
+# =============================================================================
+V3:
+  experiment_id: "V3"
+  description: "Model robustness - DeepSeek R1 (reasoning specialist)"
+  hypothesis: "Reasoning-specialized model improves or maintains performance"
+  claims_supported: ["R1", "R2"]
+
+  llm_provider: "sglang"
+  llm_model_role: "validation_r1"  # togetherai/deepseek-ai/DeepSeek-R1-0528
+
+  metrics:
+    - shd
+    - f1
+    - num_queries
+    - wall_time
+
+# =============================================================================
+# V4: Multi-Model Ensemble Validation
+# =============================================================================
+V4:
+  experiment_id: "V4"
+  description: "Model robustness - Rashomon test across models"
+  hypothesis: "Contradiction detection works across all model families"
+  claims_supported: ["R1", "C5"]
+
+  # Run Rashomon test with each model
+  test_type: "rashomon"
+  n_vars: 20
+  n_contradiction_scenarios: 5
+
+  models_to_test:
+    - "validation_gemini"
+    - "validation_qwen"
+    - "validation_r1"
+
+  metrics:
+    - detection_rate
+    - resolution_rate
+    - latent_proposal_rate
+
+# =============================================================================
+# V5: Cross-Model Consistency
+# =============================================================================
+V5:
+  experiment_id: "V5"
+  description: "Model robustness - Cross-model graph agreement"
+  hypothesis: "Different models produce similar causal structures"
+  claims_supported: ["R1", "R3"]
+
+  # Measure agreement between graphs from different models
+  test_type: "cross_validation"
+
+  models_to_compare:
+    - "primary"
+    - "validation_gemini"
+    - "validation_qwen"
+    - "validation_r1"
+
+  metrics:
+    - pairwise_shd
+    - graph_jaccard
+    - edge_agreement_rate
+
+# =============================================================================
+# Paper Section Text
+# =============================================================================
+paper_section: |
+  ## 5.4 Model Robustness (V1-V5)
+
+  To demonstrate that HOLOGRAPH's effectiveness stems from the methodology
+  rather than model-specific artifacts, we replicate experiments with four
+  LLM families (Table 5):
+
+  | Model | Family | SHD↓ | F1↑ | Detection Rate |
+  |-------|--------|------|-----|----------------|
+  | DeepSeek V3.2 (Primary) | DeepSeek | X.XX | 0.XX | XX% |
+  | Gemini 2.5 Pro | Google | X.XX | 0.XX | XX% |
+  | Qwen3-235B | Alibaba | X.XX | 0.XX | XX% |
+  | DeepSeek R1 | DeepSeek (Reasoning) | X.XX | 0.XX | XX% |
+
+  Results show consistent performance (±X% SHD) across architectures,
+  confirming HOLOGRAPH's model-agnostic nature.

@@ -1,0 +1,33 @@
+# Sheaf Axiom: Locality (restrictions agree on overlaps) (n=50, depth=5)
+# Hypothesis: Locality error < epsilon for all overlapping contexts
+
+method: holograph
+learning_rate: 0.01
+lambda_descent: 1.0
+lambda_spec: 0.1
+lambda_reg: 0.0001
+max_steps: 500
+use_natural_gradient: true
+llm_provider: sglang
+llm_model_role: primary
+use_llm: true
+use_embeddings: false
+use_active_queries: true
+max_queries_per_step: 3
+query_interval: 25
+max_total_queries: 100
+max_total_tokens: 500000
+output_dir: experiments/outputs
+save_checkpoints: true
+checkpoint_interval: 100
+experiment_id: X3_n50_d5
+description: 'Sheaf Axiom: Locality (restrictions agree on overlaps) (n=50, depth=5)'
+hypothesis: Locality error < epsilon for all overlapping contexts
+claims_supported:
+- T3
+dataset: sf
+n_vars: 50
+dataset_kwargs:
+  avg_degree: 2.0
+seed: 42
+context_depth: 5
