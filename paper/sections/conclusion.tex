@@ -1,0 +1,53 @@
+%=============================================================================
+% CONCLUSION
+%=============================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+We presented \textsc{Holograph}, a sheaf-theoretic framework for LLM-guided causal discovery.
+By formalizing local causal beliefs as presheaf sections and global consistency
+as descent conditions, we provide principled foundations for integrating
+LLM knowledge into structure learning.
+
+Our key contributions include:
+\begin{itemize}
+    \item The Algebraic Latent Projection for handling hidden confounders
+    \item Natural gradient descent with Tikhonov regularization for optimization
+    \item EFE-based active query selection for efficient LLM utilization
+    \item Comprehensive sheaf axiom verification revealing fundamental locality failures
+\end{itemize}
+
+The systematic failure of the Locality axiom is perhaps our most significant finding.
+It demonstrates that the presheaf of ADMGs does not form a classical sheaf
+when latent variables induce non-local coupling. This provides a formal measure
+of the ``non-sheafness'' inherent in causal models with hidden confounders---a
+quantity that could guide future algorithms in detecting latent variable necessity.
+
+\paragraph{Limitations.}
+\begin{itemize}
+    \item \textbf{Scalability:} Performance on graphs with $n > 100$ variables degrades
+          due to $O(n^3)$ projection costs. Sparse approximations may help.
+    \item \textbf{LLM Reliability:} Current approach assumes LLM responses are locally consistent.
+          Adversarially contradictory LLMs could violate this assumption.
+    \item \textbf{Identifiability:} As with all causal discovery methods, we can only recover
+          structure up to Markov equivalence without interventional data.
+\end{itemize}
+
+\paragraph{Future Work.}
+Promising directions include:
+\begin{enumerate}
+    \item \textbf{Cohomological Measures:} Develop sheaf cohomology metrics to quantify
+          Locality violations, potentially using $\check{\text{C}}$ech cohomology.
+    \item \textbf{Hybrid Methods:} Combine \textsc{Holograph} with constraint-based algorithms
+          (e.g., FCI) to leverage both continuous optimization and discrete constraint propagation.
+    \item \textbf{Interventional Extensions:} Extend to experimental design settings where
+          interventions can be performed, potentially enabling full causal identification.
+\end{enumerate}
+
+\paragraph{Speculative Connections.}
+We note a suggestive parallel between our Locality failure and quantum non-locality.
+In quantum mechanics, entangled systems violate Bell inequalities through correlations
+that resist local hidden variable explanations. Similarly, ADMGs with latent confounders
+exhibit correlations between distant variables that cannot be explained by local restrictions.
+The scaling $\text{Error} \propto \sqrt{n}$ in both settings hints at deeper mathematical
+connections---a direction for future theoretical exploration.

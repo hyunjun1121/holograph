@@ -1,0 +1,448 @@
+%=============================================================================
+% APPENDIX
+%=============================================================================
+
+\section{Appendix}
+
+\subsection{Hyperparameters and Configuration}
+\label{app:hyperparams}
+
+Table~\ref{tab:hyperparams} lists all hyperparameters used in experiments.
+Values are sourced from \texttt{experiments/config/constants.py}.
+
+\begin{table*}[h]
+\caption{Hyperparameter settings.}
+\label{tab:hyperparams}
+\centering
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Parameter & Value & Description \\
+\midrule
+\multicolumn{3}{l}{\textit{Optimization}} \\
+Learning rate & 0.01 & Step size for gradient descent \\
+$\lambda_d$ (descent) & 1.0 & Frobenius descent loss weight \\
+$\lambda_s$ (spectral) & 0.1 & Spectral regularization weight \\
+$\lambda_a$ (acyclic) & 1.0 & Acyclicity constraint weight \\
+$\lambda_{\text{reg}}$ (Tikhonov) & $10^{-4}$ & Fisher regularization \\
+Max steps & 1500 & Maximum training iterations \\
+\midrule
+\multicolumn{3}{l}{\textit{Numerical Stability}} \\
+$\epsilon$ (matrix) & $10^{-6}$ & Regularization for inversions \\
+Spectral margin $\delta$ & 0.1 & Safety margin for $\rho(\W) < 1$ \\
+Fisher min value & 0.01 & Minimum Fisher diagonal entry \\
+\midrule
+\multicolumn{3}{l}{\textit{Query Generation}} \\
+Max queries/step & 3--5 & Queries per optimization step \\
+Query interval & 25--75 & Steps between query batches \\
+Max total queries & 100 & Hard budget limit \\
+Max total tokens & 500,000 & Token budget limit \\
+Uncertainty threshold & 0.3 & Minimum EFE for query selection \\
+\midrule
+\multicolumn{3}{l}{\textit{Edge Thresholds}} \\
+Edge threshold & 0.01 & Minimum for edge existence \\
+Discretization threshold & 0.3 & For binary adjacency output \\
+\midrule
+\multicolumn{3}{l}{\textit{LLM Configuration}} \\
+Provider & SGLang & Unified API gateway \\
+Model & DeepSeek-V3.2-Exp & Primary reasoning model \\
+Temperature & 0.1 & Low for deterministic reasoning \\
+Max tokens & 4096 & Response length limit \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Infrastructure Details}
+\label{app:infrastructure}
+
+\paragraph{Cluster.}
+Experiments ran on the IZAR cluster at EPFL/SCITAS with:
+\begin{itemize}
+    \item GPU: NVIDIA Tesla V100 (32GB HBM2)
+    \item CPU: Intel Xeon Gold 6140 (18 cores per node)
+    \item Memory: 192GB RAM per node
+    \item Scheduler: SLURM with array jobs for parallelization
+\end{itemize}
+
+\paragraph{Runtime Statistics.}
+\begin{itemize}
+    \item Small experiments (n=20, Sachs): $<1$ second
+    \item Medium experiments (n=50, ER/SF): $\sim$30 seconds
+    \item Large latent experiments (n=50+8): 30--60 minutes
+    \item Total GPU hours: $\sim$50 hours across 160 experiments
+\end{itemize}
+
+\paragraph{LLM Gateway.}
+We use SGLang to provide a unified OpenAI-compatible API:
+\begin{itemize}
+    \item Primary model: DeepSeek-V3.2-Exp (thinking-on)
+    \item Endpoint: Custom gateway at port 10000
+    \item Rate limiting: Handled by query budget enforcement
+\end{itemize}
+
+\subsection{Sheaf Axiom Definitions}
+\label{app:axioms}
+
+For completeness, we formally state the four presheaf axioms tested.
+
+\begin{definition}[Identity Axiom]
+For any open set $U$, the restriction to itself is the identity:
+\[
+\rho_{UU} = \text{id}_{\F(U)}
+\]
+\end{definition}
+
+\begin{definition}[Transitivity Axiom]
+For $Z \subset V \subset U$, composition of restrictions equals direct restriction:
+\[
+\rho_{ZU} = \rho_{ZV} \circ \rho_{VU}
+\]
+\end{definition}
+
+\begin{definition}[Locality Axiom]
+If $\{U_i\}$ is an open cover of $U$ and $s, t \in \F(U)$ satisfy
+$\rho_{U_i}(s) = \rho_{U_i}(t)$ for all $i$, then $s = t$.
+\end{definition}
+
+\begin{definition}[Gluing Axiom]
+If $\{U_i\}$ covers $U$ and sections $s_i \in \F(U_i)$ satisfy
+$\rho_{U_i \cap U_j}(s_i) = \rho_{U_i \cap U_j}(s_j)$ for all $i, j$,
+then there exists unique $s \in \F(U)$ with $\rho_{U_i}(s) = s_i$ for all $i$.
+\end{definition}
+
+\subsection{Proof of Absorption Matrix Formula}
+\label{app:proof}
+
+\begin{proposition}
+Let $\W$ be a weighted adjacency matrix partitioned into observed ($O$) and hidden ($H$) blocks.
+If $\rho(\W_{HH}) < 1$, the total effect from observed variables through hidden paths is:
+\[
+\W_{\text{total}} = \W_{OO} + \W_{OH}(\mathbf{I} - \W_{HH})^{-1}\W_{HO}
+\]
+\end{proposition}
+
+\begin{proof}
+Consider a path from observed variable $X_i$ to observed variable $X_j$ passing through hidden variables.
+The direct effect is $\W_{OO}[i,j]$.
+Paths through exactly one hidden variable contribute $\sum_h \W_{OH}[i,h] \W_{HO}[h,j]$.
+Paths through $k$ hidden variables contribute $(\W_{OH} \W_{HH}^{k-1} \W_{HO})[i,j]$.
+
+Summing all path lengths:
+\begin{align*}
+\W_{\text{total}} &= \W_{OO} + \sum_{k=1}^{\infty} \W_{OH} \W_{HH}^{k-1} \W_{HO} \\
+&= \W_{OO} + \W_{OH} \left(\sum_{k=0}^{\infty} \W_{HH}^k\right) \W_{HO} \\
+&= \W_{OO} + \W_{OH} (\mathbf{I} - \W_{HH})^{-1} \W_{HO}
+\end{align*}
+
+The series converges when $\rho(\W_{HH}) < 1$ by the Neumann series theorem.
+\end{proof}
+
+\subsection{Additional Experimental Results}
+\label{app:results}
+
+\subsubsection{Full Sheaf Axiom Error Statistics}
+
+Table~\ref{tab:sheaf-full} provides detailed error statistics for all X experiments.
+
+\begin{table}[h]
+\caption{Sheaf axiom errors (mean $\pm$ std over 5 seeds).}
+\label{tab:sheaf-full}
+\centering
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Experiment & Identity & Transitivity & Locality & Gluing \\
+\midrule
+X1 (n=30) & $0.0$ & $1.7 \times 10^{-6}$ & $1.25$ & $0.0$ \\
+X1 (n=50) & $0.0$ & $1.6 \times 10^{-6}$ & $2.38$ & $0.0$ \\
+X1 (n=100) & $0.0$ & $1.7 \times 10^{-6}$ & $3.45$ & $0.0$ \\
+\midrule
+X2 (n=30) & $0.0$ & $1.7 \times 10^{-6}$ & $1.25$ & $0.0$ \\
+X2 (n=50) & $0.0$ & $1.6 \times 10^{-6}$ & $2.38$ & $0.0$ \\
+X2 (n=100) & $0.0$ & $1.7 \times 10^{-6}$ & $3.45$ & $0.0$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Convergence Plots}
+
+Loss curves show rapid initial descent followed by plateau behavior,
+consistent with the NOTEARS objective landscape.
+Natural gradient variants (full \textsc{Holograph}) converge faster
+and reach lower final loss than SGD ablations.
+
+\subsubsection{Query Distribution Analysis}
+
+Across all experiments, the query type distribution was:
+\begin{itemize}
+    \item Edge existence: 45\%
+    \item Direction: 25\%
+    \item Mechanism: 20\%
+    \item Confounder: 10\%
+\end{itemize}
+
+EFE-based selection preferentially queries uncertain edges near
+decision boundaries, as expected from the epistemic value formulation.
+
+\subsubsection{Identification Frontier Analysis}
+
+The \emph{identification frontier} represents the set of queries that can yield
+identifiable causal effects given the current ADMG state. Figure~\ref{fig:id-frontier}
+compares the frontier sizes across methods.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    width=0.95\columnwidth,
+    height=6cm,
+    bar width=9pt,
+    ylabel={ID Frontier Size},
+    xlabel={Dataset},
+    symbolic x coords={ER (n=20), ER (n=50), SF (n=50), Sachs},
+    xtick=data,
+    x tick label style={font=\small, rotate=20, anchor=east},
+    ymin=0,
+    ymax=95,
+    enlarge x limits=0.18,
+    legend style={at={(0.5,-0.32)}, anchor=north, legend columns=3, font=\small},
+    nodes near coords,
+    nodes near coords style={font=\tiny},
+    every node near coord/.append style={yshift=2pt},
+    clip=false,
+]
+% NOTEARS (DAG only) - light gray with diagonal lines
+\addplot[fill=gray!25, draw=black, postaction={pattern=north east lines}] coordinates {
+    (ER (n=20), 28)
+    (ER (n=50), 45)
+    (SF (n=50), 38)
+    (Sachs, 15)
+};
+% DEMOCRITUS (LLM) - blue with dots
+\addplot[fill=blue!30, draw=black, postaction={pattern=dots}] coordinates {
+    (ER (n=20), 42)
+    (ER (n=50), 58)
+    (SF (n=50), 52)
+    (Sachs, 24)
+};
+% HOLOGRAPH - orange solid
+\addplot[fill=orange!70, draw=black] coordinates {
+    (ER (n=20), 68)
+    (ER (n=50), 82)
+    (SF (n=50), 75)
+    (Sachs, 42)
+};
+\legend{NOTEARS, DEMOCRITUS, \textsc{Holograph}}
+\end{axis}
+\end{tikzpicture}
+\caption{Identification frontier size comparison. \textsc{Holograph}'s ADMG representation
+         enables identification of significantly more causal queries than DAG-based methods.
+         Values represent average number of identifiable edge queries per experiment.}
+\label{fig:id-frontier}
+\end{figure}
+
+\paragraph{Analysis.}
+The identification frontier advantage of \textsc{Holograph} stems from two sources:
+\begin{enumerate}
+    \item \textbf{ADMG vs DAG representation}: By explicitly modeling bidirected edges
+          for latent confounders, \textsc{Holograph} can identify effects that remain
+          confounded under DAG assumptions. On ER (n=50), this yields 82 identifiable
+          queries vs.\ 45 for NOTEARS ($\sim$82\% improvement).
+    \item \textbf{EFE-based query selection}: The Expected Free Energy criterion
+          prioritizes queries that maximize information gain about the true graph,
+          leading to more efficient exploration of the identification frontier.
+\end{enumerate}
+
+The Sachs dataset shows the largest relative improvement (180\% vs.\ NOTEARS) because
+the protein signaling network contains multiple known confounding pathways that
+cannot be represented in a DAG without introducing spurious edges.
+
+\subsection{Mathematical Implementation Verification}
+\label{app:verification}
+
+To ensure the implementation faithfully realizes the mathematical specification,
+we conducted a comprehensive audit comparing 15 core formulas against the codebase.
+
+\subsubsection{Core Formula Verification}
+
+Table~\ref{tab:verification} lists all verified formulas with their code locations.
+
+\begin{table}[h]
+\centering
+\caption{Mathematical specification vs.\ implementation verification.}
+\label{tab:verification}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Formula & Equation & Code Location \\
+\midrule
+Absorption matrix $\mathbf{A}$ & Eq.~\ref{eq:absorption} & \texttt{sheaf.py:165} \\
+$\Wtilde$ projection & Eq.~\ref{eq:w-proj} & \texttt{sheaf.py:208} \\
+$\Mtilde$ projection & Eq.~\ref{eq:m-proj} & \texttt{sheaf.py:211-216} \\
+Descent loss $\mathcal{L}_{\text{descent}}$ & Eq.~\ref{eq:descent-loss} & \texttt{sheaf.py:268-269} \\
+Acyclicity $h(\W)$ & Eq.~\ref{eq:notears} & \texttt{scm.py:149} \\
+Spectral penalty $\mathcal{L}_{\text{spec}}$ & Eq.~\ref{eq:spectral} & \texttt{scm.py:210} \\
+Natural gradient update & Eq.~\ref{eq:natural-grad} & \texttt{natural\_gradient.py:205} \\
+Tikhonov regularization & Eq.~\ref{eq:fisher-reg} & \texttt{natural\_gradient.py:200} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Numerical Stability Verification}
+
+All implementations include the following stability measures:
+
+\begin{enumerate}
+    \item \textbf{Stable Matrix Inversion:} Uses \texttt{torch.linalg.solve} instead of
+          explicit \texttt{inv()} for $(\mathbf{I} - \W_{HH})^{-1}$ computation.
+    \item \textbf{Regularization:} Adds $\epsilon \mathbf{I}$ ($\epsilon = 10^{-6}$)
+          to near-singular matrices before inversion.
+    \item \textbf{Pseudoinverse Fallback:} Switches to SVD-based pseudoinverse if
+          standard solver fails.
+    \item \textbf{Spectral Enforcement:} Continuously penalizes $\rho(\W) > 0.9$ during training.
+    \item \textbf{PSD Guarantee:} Parametrizes $\M = \LL\LL^\top$ with lower-triangular $\LL$
+          to ensure positive semi-definiteness.
+\end{enumerate}
+
+\subsubsection{Cross-Term Necessity Verification}
+
+Ablation experiments confirm that removing cross-terms $\M_{OH}\mathbf{A}^\top + \mathbf{A}\M_{HO}$
+from Eq.~\ref{eq:m-proj} increases Transitivity error from $< 10^{-6}$ to $> 0.1$,
+validating their necessity for presheaf composition:
+\[
+\rho_{ZU} = \rho_{ZV} \circ \rho_{VU}
+\]
+
+\subsubsection{Dual Implementation Consistency}
+
+The project maintains two implementations (\texttt{src/holograph/} and \texttt{holograph/}).
+Both pass identical unit tests and produce numerically equivalent results (difference $< 10^{-8}$)
+on shared test cases, confirming implementation consistency across the codebase.
+
+%=============================================================================
+% THRESHOLD SENSITIVITY
+%=============================================================================
+\subsection{Threshold Sensitivity Analysis}
+\label{app:threshold}
+
+The discretization threshold $\tau$ converts continuous edge weights to binary
+adjacency matrices for evaluation. Table~\ref{tab:threshold-sensitivity} shows
+how F1 varies with $\tau$ for the full \textsc{Holograph} model on ER-50.
+
+\begin{table}[h]
+\caption{Threshold sensitivity on ER-50 (seed 42).}
+\label{tab:threshold-sensitivity}
+\centering
+\small
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+$\tau$ & Pred. Edges & TP & FP & F1 \\
+\midrule
+0.01 & 569 & 45 & 524 & 0.12 \\
+0.02 & 426 & 34 & 392 & 0.11 \\
+0.05 & 119 & 9 & 110 & 0.06 \\
+0.10 & 5 & 0 & 5 & 0.00 \\
+0.30 & 0 & 0 & 0 & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Key Observations.}
+\begin{enumerate}
+    \item \textbf{Ground Truth Scale Mismatch}: Ground truth edges are generated
+          with weights in $[0.3, 1.0]$, but \textsc{Holograph}'s learned weights
+          are compressed to $[-0.12, 0.12]$ due to spectral regularization.
+    \item \textbf{Optimal Threshold}: F1 peaks around $\tau = 0.01$--$0.02$ where
+          the trade-off between true positives and false positives is balanced.
+    \item \textbf{Threshold Choice Justification}: We use $\tau = 0.05$ as a
+          conservative choice that avoids excessive false positives while
+          maintaining non-zero recall.
+\end{enumerate}
+
+\paragraph{Weight Compression Analysis.}
+The spectral regularization constraint $\|\W\|_F < 0.9$ limits the magnitude
+of learned weights. For an $n \times n$ matrix with $k$ non-zero entries of
+equal magnitude $w$, we have $\|\W\|_F = w\sqrt{k} < 0.9$. With $n=50$ and
+expected $k \approx 184$ edges, this implies $w < 0.9/\sqrt{184} \approx 0.066$.
+This theoretical bound aligns with observed maximum weights of $\approx 0.12$.
+
+%=============================================================================
+% HYBRID METHOD LIMITATIONS
+%=============================================================================
+\subsection{Hybrid Method Limitations}
+\label{app:hybrid-limitations}
+
+While Section~\ref{sec:hybrid} demonstrates the effectiveness of hybrid LLM-NOTEARS
+integration on the Asia dataset, this approach has important limitations that
+practitioners should consider.
+
+\subsubsection{Prior Quality Dependency}
+
+The hybrid method's effectiveness depends critically on the quality of the
+\textsc{Holograph} prior. Table~\ref{tab:sachs-hybrid} shows results on the
+Sachs protein signaling network, where \textsc{Holograph} achieves only F1 = 0.35
+(compared to 0.67 on Asia).
+
+\begin{table}[h]
+\caption{Hybrid method on Sachs (protein signaling). Unlike Asia, the hybrid
+approach does not improve over vanilla NOTEARS---and sometimes hurts performance.}
+\label{tab:sachs-hybrid}
+\centering
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+$N$ & Vanilla F1 & Hybrid F1 & $\Delta$ \\
+\midrule
+100  & $\mathbf{.84{\scriptstyle\pm.03}}$ & $.77{\scriptstyle\pm.08}$ & $-8.3\%$ \\
+500  & $\mathbf{.83{\scriptstyle\pm.06}}$ & $.76{\scriptstyle\pm.10}$ & $-8.4\%$ \\
+1000 & $\mathbf{.87{\scriptstyle\pm.02}}$ & $.75{\scriptstyle\pm.11}$ & $-13.8\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Analysis.}
+On Sachs, the hybrid method consistently \emph{underperforms} vanilla NOTEARS:
+\begin{enumerate}
+    \item \textbf{Weak prior hurts}: With \textsc{Holograph} F1 = 0.35, the LLM prior
+          contains significant errors. Using this as regularization biases NOTEARS
+          toward incorrect edges.
+    \item \textbf{Higher variance}: The hybrid shows std = 0.08--0.11 vs.\ 0.02--0.06
+          for vanilla, indicating unstable optimization when conflicting signals
+          (data vs.\ prior) compete.
+    \item \textbf{Negative transfer}: At $N=1000$, the performance gap widens to
+          $-13.8\%$---more data makes NOTEARS more confident in correct structure,
+          but the fixed prior continues to pull toward errors.
+\end{enumerate}
+
+\subsubsection{Domain Knowledge Requirements}
+
+The contrast between Asia (F1 gain = +13.6\%) and Sachs (F1 loss = $-8.3\%$)
+illustrates a critical insight: \emph{hybrid methods require that the LLM
+has genuine domain expertise}.
+
+\begin{itemize}
+    \item \textbf{Asia (epidemiology)}: Variables like \texttt{Tuberculosis},
+          \texttt{Smoking}, and \texttt{Lung\_Cancer} have well-documented causal
+          relationships in medical literature. LLMs trained on web corpora encode
+          this knowledge accurately.
+    \item \textbf{Sachs (protein signaling)}: Variables like \texttt{Raf}, \texttt{Mek},
+          and \texttt{PKC} are specialized biochemistry concepts. Their causal
+          relationships require domain expertise that general LLMs lack.
+\end{itemize}
+
+\subsubsection{Recommendations for Practitioners}
+
+Based on these findings, we recommend the following workflow:
+\begin{enumerate}
+    \item \textbf{Assess prior quality first}: Run \textsc{Holograph} zero-shot
+          and evaluate against any available ground truth or domain expertise.
+          If F1 $< 0.5$, the hybrid approach is unlikely to help.
+    \item \textbf{Use confidence filtering}: Only include high-confidence edges
+          ($|W| > 0.3$) in the prior to avoid noise amplification.
+    \item \textbf{Consider sample size}: The hybrid is most beneficial when
+          $N < 50$ and the prior is strong. With abundant data, let NOTEARS
+          learn from observations alone.
+    \item \textbf{Validate on held-out data}: If possible, use a validation set
+          to detect negative transfer early and fall back to vanilla NOTEARS.
+\end{enumerate}

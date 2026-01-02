@@ -1,0 +1,281 @@
+%=============================================================================
+% METHODOLOGY
+%=============================================================================
+\section{Methodology}
+\label{sec:method}
+
+We now present the technical foundations of \textsc{Holograph}, proceeding from
+the mathematical framework to the optimization algorithm.
+
+\subsection{Presheaf of Causal Models}
+\label{sec:presheaf}
+
+Let $\mathcal{V} = \{X_1, \ldots, X_n\}$ be a set of random variables.
+We define a presheaf $\F$ over the power set $2^{\mathcal{V}}$ (ordered by inclusion)
+whose sections are linear Structural Equation Models (SEMs) \citep{bollen1989structural}.
+
+\begin{definition}[Causal State]
+A \emph{causal state} over variable set $U \subseteq \mathcal{V}$ is a pair
+$\theta_U = (\W_U, \M_U)$ where:
+\begin{itemize}
+    \item $\W_U \in \R^{|U| \times |U|}$ is the weighted adjacency matrix of directed edges
+    \item $\M_U = \LL_U \LL_U^\top \in \R^{|U| \times |U|}$ is the error covariance matrix,
+          with $\LL_U$ lower-triangular (Cholesky factor)
+\end{itemize}
+\end{definition}
+
+The pair $(\W, \M)$ corresponds to an Acyclic Directed Mixed Graph (ADMG)
+where directed edges encode causal effects and bidirected edges (encoded in $\M$)
+represent latent confounding.
+
+\subsection{Probabilistic Model and Semantic Energy}
+\label{sec:semantic-energy}
+
+To enable gradient-based optimization, we define a probabilistic model over LLM text
+observations $y$ given causal parameters $\theta = (\W, \LL)$.
+
+\begin{definition}[Gibbs Measure over Causal Structures]
+\label{def:gibbs}
+We model the LLM's text generation process as a Gibbs measure:
+\begin{equation}
+P(y | \theta) = \frac{1}{Z(\theta)} \exp\left( -\beta \, \mathcal{E}_{\text{sem}}(\theta, y) \right)
+\label{eq:gibbs}
+\end{equation}
+where $\beta > 0$ is the inverse temperature and $Z(\theta) = \int \exp(-\beta \, \mathcal{E}_{\text{sem}}(\theta, y')) \, dy'$
+is the partition function.
+\end{definition}
+
+\begin{definition}[Semantic Energy Function]
+\label{def:semantic-energy}
+The energy $\mathcal{E}_{\text{sem}}$ measures the distance between LLM text embedding $\phi(y)$
+and graph structure embedding $\Psi(\theta)$ in a Reproducing Kernel Hilbert Space (RKHS) $\mathcal{H}$:
+\begin{equation}
+\mathcal{E}_{\text{sem}}(\theta, y) = \| \phi(y) - \Psi(\W, \M) \|^2_{\mathcal{H}}
+\label{eq:semantic-energy}
+\end{equation}
+where $\phi: \text{Text} \to \mathcal{H}$ embeds LLM responses via pre-trained encoders,
+and $\Psi: (\W, \M) \to \mathcal{H}$ encodes graph structure.
+\end{definition}
+
+This formulation provides the probabilistic foundation for:
+\begin{enumerate}
+    \item \textbf{Loss Function}: The negative log-likelihood yields
+          $\mathcal{L}_{\text{sem}} = \beta \, \mathcal{E}_{\text{sem}} + \log Z$,
+          where we approximate $Z$ as constant during optimization.
+    \item \textbf{Fisher Information Matrix}: The metric tensor $\mathbf{G}(\theta)$ arises naturally
+          from this Gibbs measure (Section~\ref{sec:natural-gradient}).
+\end{enumerate}
+
+\begin{remark}[Practical Implementation]
+\label{remark:cosine-proxy}
+In practice, we use cosine distance as a computationally efficient proxy for the RKHS norm.
+On the unit sphere (normalized embeddings), cosine distance satisfies
+$d_{\cos}(\mathbf{u}, \mathbf{v}) = 1 - \langle \mathbf{u}, \mathbf{v} \rangle = \frac{1}{2}\|\mathbf{u} - \mathbf{v}\|^2$,
+preserving the squared-distance structure of Eq.~\ref{eq:semantic-energy}.
+\end{remark}
+
+\subsection{Algebraic Latent Projection}
+\label{sec:projection}
+
+The key technical contribution is the \emph{restriction morphism} $\rho_{UV}$
+that projects a causal state from a larger context $U$ to a smaller context $V \subset U$.
+When hidden variables exist in $H = U \setminus V$, we cannot simply truncate matrices;
+we must account for how hidden effects propagate through the causal structure.
+
+\begin{definition}[Algebraic Latent Projection]
+Given a causal state $\theta = (\W, \M)$ over $U$ and observed subset $O \subset U$
+with hidden variables $H = U \setminus O$, partition:
+\begin{equation}
+\W = \begin{pmatrix} \W_{OO} & \W_{OH} \\ \W_{HO} & \W_{HH} \end{pmatrix}, \quad
+\M = \begin{pmatrix} \M_{OO} & \M_{OH} \\ \M_{HO} & \M_{HH} \end{pmatrix}
+\end{equation}
+
+The \emph{absorption matrix} is:
+\begin{equation}
+\mathbf{A} = \W_{OH}(\mathbf{I} - \W_{HH})^{-1}
+\label{eq:absorption}
+\end{equation}
+
+The projected causal state $\rho_{UO}(\theta) = (\Wtilde, \Mtilde)$ is:
+\begin{align}
+\Wtilde &= \W_{OO} + \mathbf{A} \W_{HO} \label{eq:w-proj} \\
+\Mtilde &= \M_{OO} + \mathbf{A} \M_{HH} \mathbf{A}^\top + \M_{OH} \mathbf{A}^\top + \mathbf{A} \M_{HO} \label{eq:m-proj}
+\end{align}
+\end{definition}
+
+\begin{remark}[Necessity of Cross-Terms]
+\label{remark:cross-terms}
+The cross-terms $\M_{OH} \mathbf{A}^\top + \mathbf{A} \M_{HO}$ in Eq.~\ref{eq:m-proj}
+are \textbf{essential} for satisfying the Transitivity axiom $\rho_{ZU} = \rho_{ZV} \circ \rho_{VU}$.
+Without these terms, the projection becomes $\Mtilde^{\text{naive}} = \M_{OO} + \mathbf{A} \M_{HH} \mathbf{A}^\top$,
+which fails to account for correlations $\text{Cov}(X_O, X_H)$ between observed and hidden variables.
+This breaks composition: projecting $U \to V \to Z$ yields different results than $U \to Z$ directly.
+Our implementation verification (Appendix~\ref{app:verification}) confirms that including all four terms
+achieves Transitivity error $< 10^{-6}$, while ablating cross-terms results in errors $> 0.1$.
+\end{remark}
+
+The absorption matrix $\mathbf{A}$ captures how effects from observed to hidden variables
+``bounce back'' through the hidden subgraph. The condition $\rho(\W_{HH}) < 1$
+(spectral radius $< 1$) ensures the Neumann series $(I - \W_{HH})^{-1} = \sum_{k=0}^\infty \W_{HH}^k$
+converges, corresponding to acyclicity among hidden variables.
+
+\subsection{Frobenius Descent Condition}
+\label{sec:descent}
+
+For the presheaf to be coherent, sections over overlapping contexts must agree on their intersection.
+Given contexts $U_i, U_j$ with intersection $V_{ij} = U_i \cap U_j$, the \emph{Frobenius descent loss} is:
+
+\begin{equation}
+\mathcal{L}_{\text{descent}} = \sum_{i,j} \left( \Frob{\rho_{V_{ij}}(\theta_i) - \rho_{V_{ij}}(\theta_j)}^2 \right)
+\label{eq:descent-loss}
+\end{equation}
+
+where $\Frob{\cdot}$ denotes the Frobenius norm.
+This loss penalizes inconsistencies when projecting local beliefs onto their overlaps.
+
+\subsection{Spectral Regularization}
+\label{sec:spectral}
+
+The Algebraic Latent Projection (Section~\ref{sec:projection}) requires computing
+$(\mathbf{I} - \W_{HH})^{-1}$ via the Neumann series:
+\begin{equation}
+(\mathbf{I} - \W_{HH})^{-1} = \sum_{k=0}^{\infty} \W_{HH}^k
+\label{eq:neumann-series}
+\end{equation}
+This series converges if and only if the spectral radius $\rho(\W_{HH}) < 1$.
+To enforce this condition during optimization, we impose a spectral penalty.
+
+\begin{definition}[Spectral Stability Regularization]
+\label{def:spectral-stability}
+We penalize violations of the spectral constraint:
+\begin{equation}
+\mathcal{L}_{\text{spec}}(\W) = \max(0, \rho(\W) - 1 + \delta)^2
+\label{eq:spectral-exact}
+\end{equation}
+where $\delta = 0.1$ is a safety margin ensuring $\rho(\W) < 0.9$.
+\end{definition}
+
+\paragraph{Computational Approximation.}
+Computing $\rho(\W)$ via eigenvalue decomposition is expensive ($O(n^3)$) and can produce
+unstable gradients. We use the Frobenius norm as a differentiable upper bound:
+\begin{equation}
+\mathcal{L}_{\text{spec}}(\W) = \max(0, \Frob{\W} - (1 - \delta))^2
+\label{eq:spectral}
+\end{equation}
+This is valid because $\Frob{\W} = \sqrt{\sum_{ij} w_{ij}^2} \geq \sigma_{\max}(\W) \geq \rho(\W)$,
+providing a \emph{conservative} (over-penalizing) but differentiable bound.
+
+\paragraph{Why This Matters.}
+Without spectral regularization, $\rho(\W_{HH})$ can approach 1 during optimization, causing:
+(1) numerical overflow in absorption matrix computation,
+(2) gradient explosion preventing convergence, and
+(3) invalid ADMG representations violating acyclicity among hidden variables.
+
+\subsection{Acyclicity Constraint}
+\label{sec:acyclicity}
+
+We enforce acyclicity using the NOTEARS constraint \citep{zheng2018dags}:
+
+\begin{equation}
+h(\W) = \tr(e^{\W \circ \W}) - n = 0
+\label{eq:notears}
+\end{equation}
+
+where $\circ$ denotes element-wise product. This continuous relaxation equals zero
+if and only if $\W$ encodes a DAG.
+
+\subsection{Natural Gradient Descent}
+\label{sec:natural-gradient}
+
+Standard gradient descent on the belief parameters $\theta = (\W, \LL)$ ignores
+the geometry of the parameter space. We employ \emph{natural gradient descent} \citep{amari1998natural},
+which uses the Fisher Information Matrix as a Riemannian metric.
+
+\paragraph{Fisher Metric from Gibbs Measure.}
+For the Gibbs measure $P(y|\theta)$ defined in Eq.~\ref{eq:gibbs}, the Fisher Information Matrix is:
+\begin{equation}
+\mathbf{G}(\theta) = \E_{y \sim P(\cdot|\theta)}\left[(\nabla_\theta \log P(y|\theta))(\nabla_\theta \log P(y|\theta))^\top\right]
+\label{eq:fisher-exact}
+\end{equation}
+Expanding the gradient of the log-probability:
+$\nabla_\theta \log P(y|\theta) = -\beta \nabla_\theta \mathcal{E}_{\text{sem}}(\theta, y) - \nabla_\theta \log Z(\theta)$.
+Assuming quasi-static dynamics where $Z$ varies slowly, we approximate:
+\begin{equation}
+\mathbf{G}(\theta) \approx \beta^2 \, \E_y\left[(\nabla_\theta \mathcal{E}_{\text{sem}})(\nabla_\theta \mathcal{E}_{\text{sem}})^\top\right]
+\label{eq:fisher-approx}
+\end{equation}
+
+\paragraph{Tikhonov Regularization for Unidentifiable Regions.}
+The Fisher matrix becomes singular in regions where causal effects are unidentifiable.
+We apply Tikhonov damping:
+\begin{equation}
+\mathbf{G}_{\text{reg}}(\theta) = \mathbf{G}(\theta) + \lambda_{\text{reg}} \mathbf{I}
+\label{eq:fisher-reg}
+\end{equation}
+with $\lambda_{\text{reg}} = 10^{-4}$. This ensures $\mathbf{G}_{\text{reg}}$ remains invertible,
+allowing Natural Gradient Descent to \emph{traverse unidentifiable regions smoothly}---a critical
+property when latent confounders render certain edges non-identifiable.
+
+\paragraph{Natural Gradient Update Rule.}
+The update equation is:
+\begin{equation}
+\theta_{t+1} = \theta_t - \eta \cdot \mathbf{G}_{\text{reg}}(\theta_t)^{-1} \nabla_\theta \mathcal{L}
+\label{eq:natural-grad}
+\end{equation}
+
+\paragraph{Diagonal Approximation.}
+For computational efficiency with $O(n^2)$ parameters, we use a diagonal approximation:
+\begin{equation}
+\mathbf{G}_{\text{diag}} = \text{diag}\left(\E\left[(\nabla \mathcal{E}_{\text{sem}})^2\right]\right) + \lambda_{\text{reg}} \mathbf{I}
+\label{eq:fisher-diag}
+\end{equation}
+updated via exponential moving average, reducing storage from $O(D^2)$ to $O(D)$.
+
+\subsection{Total Loss Function}
+\label{sec:total-loss}
+
+The complete objective combines all components:
+
+\begin{equation}
+\mathcal{L} = \mathcal{L}_{\text{sem}} + \lambda_d \mathcal{L}_{\text{descent}} + \lambda_a h(\W) + \lambda_s \mathcal{L}_{\text{spec}}
+\label{eq:total-loss}
+\end{equation}
+
+where $\mathcal{L}_{\text{sem}}$ is the semantic energy between LLM embeddings and graph structure,
+and $\lambda_d = 1.0$, $\lambda_a = 1.0$, $\lambda_s = 0.1$ are balancing weights.
+
+\subsection{Active Query Selection via Expected Free Energy}
+\label{sec:efe}
+
+To efficiently utilize LLM queries, we employ an active learning strategy based on
+Expected Free Energy (EFE) from active inference \citep{friston2017active,parr2017uncertainty}:
+
+\begin{equation}
+G(a) = \underbrace{\E_{q(s'|a)}[\text{KL}[q(o|s')\|p(o)]]}_{\text{Epistemic Value}} + \underbrace{\E_{q(o|a)}[\log q(o|a)]}_{\text{Instrumental Value}}
+\label{eq:efe}
+\end{equation}
+
+For each candidate query about edge $(i,j)$:
+\begin{itemize}
+    \item \textbf{Epistemic value}: Uncertainty in current edge belief, measured by
+          proximity to decision boundary: $u_{ij} = 1 - 2|w_{ij} - 0.5|$
+    \item \textbf{Instrumental value}: Expected impact on descent loss reduction
+\end{itemize}
+
+Queries are selected to minimize EFE, prioritizing high-uncertainty edges with
+potential to resolve descent conflicts.
+
+\subsection{Sheaf Axiom Verification}
+\label{sec:axioms}
+
+We verify four presheaf axioms empirically:
+
+\begin{enumerate}
+    \item \textbf{Identity}: $\rho_{UU} = \text{id}_U$ (projection onto self is identity)
+    \item \textbf{Transitivity}: $\rho_{ZU} = \rho_{ZV} \circ \rho_{VU}$ for $Z \subset V \subset U$
+    \item \textbf{Locality}: Sections over $U$ are determined by restrictions to an open cover
+    \item \textbf{Gluing}: Compatible local sections glue to a unique global section
+\end{enumerate}
+
+Section~\ref{sec:sheaf-validation} presents empirical results showing Identity, Transitivity,
+and Gluing pass to numerical precision, while Locality systematically fails for latent projections.

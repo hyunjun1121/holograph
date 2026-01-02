@@ -1,0 +1,176 @@
+{
+  "experiment": "E1_asia_semantic",
+  "dataset": "Asia",
+  "results": {
+    "holograph": {
+      "shd": {
+        "mean": 6.0,
+        "std": 0.0,
+        "min": 6.0,
+        "max": 6.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.6666666666666665,
+        "std": 0.0,
+        "min": 0.6666666666666665,
+        "max": 0.6666666666666665,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.6,
+        "std": 0.0,
+        "min": 0.6,
+        "max": 0.6,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.75,
+        "std": 0.0,
+        "min": 0.75,
+        "max": 0.75,
+        "n": 5
+      },
+      "tp": {
+        "mean": 6.0,
+        "std": 0.0,
+        "min": 6.0,
+        "max": 6.0,
+        "n": 5
+      },
+      "fp": {
+        "mean": 4.0,
+        "std": 0.0,
+        "min": 4.0,
+        "max": 4.0,
+        "n": 5
+      },
+      "fn": {
+        "mean": 2.0,
+        "std": 0.0,
+        "min": 2.0,
+        "max": 2.0,
+        "n": 5
+      },
+      "n_pred_edges": {
+        "mean": 10.0,
+        "std": 0.0,
+        "min": 10.0,
+        "max": 10.0,
+        "n": 5
+      },
+      "n_true_edges": {
+        "mean": 8.0,
+        "std": 0.0,
+        "min": 8.0,
+        "max": 8.0,
+        "n": 5
+      },
+      "llm_queries_used": {
+        "mean": 75.0,
+        "std": 0.0,
+        "min": 75.0,
+        "max": 75.0,
+        "n": 5
+      },
+      "training_steps": {
+        "mean": 500.0,
+        "std": 0.0,
+        "min": 500.0,
+        "max": 500.0,
+        "n": 5
+      }
+    }
+  },
+  "config": {
+    "experiment": {
+      "name": "E1_asia_semantic",
+      "description": "Zero-shot vs data-driven causal discovery on Asia (epidemiology) dataset",
+      "type": "E1_semantic_battlefield",
+      "intent": "Demonstrate that on semantically-rich datasets, LLM-based zero-shot\ncausal discovery (HOLOGRAPH) can match or exceed data-driven methods\n(NOTEARS) because variable names strongly imply causal relationships.\n",
+      "hypothesis": "HOLOGRAPH achieves F1 >= 0.85 on Asia dataset (zero-shot, no data),\nmatching NOTEARS performance with 1000 samples.\n",
+      "reference": "Long et al. (2024) reports LLM F1=0.93 vs NOTEARS F1=0.78 on Asia",
+      "success_criteria": {
+        "holograph_f1_min": 0.7,
+        "holograph_shd_max": 5
+      }
+    },
+    "dataset": {
+      "name": "asia",
+      "domain": "epidemiology",
+      "n_vars": 8,
+      "n_edges": 8,
+      "semantic_density": "very_high"
+    },
+    "methods": [
+      {
+        "name": "holograph",
+        "type": "zero_shot",
+        "uses_data": false,
+        "description": "LLM-based zero-shot causal discovery"
+      },
+      {
+        "name": "notears",
+        "type": "data_driven",
+        "uses_data": true,
+        "n_samples": 1000,
+        "description": "NOTEARS with full observational data"
+      }
+    ],
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "holograph": {
+      "learning_rate": 0.01,
+      "max_steps": 500,
+      "max_queries": 100,
+      "max_queries_per_step": 5,
+      "initial_queries": 20,
+      "lambda_descent": 1.0,
+      "lambda_spec": 0.1,
+      "lambda_acyclic": 1.0,
+      "lambda_reg": 0.0001,
+      "spectral_margin": 0.1,
+      "llm_provider": "sglang",
+      "llm_model_role": "primary",
+      "edge_threshold": 0.05
+    },
+    "notears": {
+      "lambda1": 0.1,
+      "max_iter": 100,
+      "h_tol": "1e-8",
+      "threshold": 0.3,
+      "n_samples": 1000
+    },
+    "metrics": [
+      "shd",
+      "f1",
+      "precision",
+      "recall",
+      "sid"
+    ],
+    "output": {
+      "base_dir": "experiments/outputs/semantic_benchmark",
+      "save_adjacency": true,
+      "save_metrics": true,
+      "generate_latex": true,
+      "generate_figures": true
+    },
+    "assertions": [
+      {
+        "dataset_nodes": 8
+      },
+      {
+        "dataset_name": "asia"
+      },
+      {
+        "check_acyclicity": true
+      }
+    ]
+  },
+  "timestamp": "2026-01-02T05:59:06.319024"
+}

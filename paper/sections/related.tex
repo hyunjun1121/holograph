@@ -1,0 +1,43 @@
+%=============================================================================
+% RELATED WORK
+%=============================================================================
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Continuous Optimization for Causal Discovery.}
+NOTEARS \citep{zheng2018dags} pioneered continuous optimization for DAG learning
+via the acyclicity constraint $h(\W) = \tr(e^{\W \circ \W}) - n$.
+Extensions include GOLEM \citep{ng2020role} with likelihood-based scoring
+and DAGMA \citep{bello2022dagma} using log-determinant characterizations.
+\textsc{Holograph} builds on this foundation, adding sheaf-theoretic consistency.
+
+\paragraph{LLM-Guided Causal Discovery.}
+Recent work explores LLMs as causal knowledge sources.
+\citet{kiciman2023causal} benchmark LLMs on causal inference tasks,
+while \citet{ban2023query} propose active querying strategies.
+\textsc{Democritus} \citep{mahadevan2024democritus} uses LLM beliefs as soft priors
+but lacks principled treatment of coherence.
+Emerging ``causal foundation models'' aim to embed causality into LLM training \citep{jin2024causality},
+yet most approaches treat LLMs as ``causal parrots'' that recite knowledge without verification.
+Our sheaf-theoretic framework addresses this gap by providing \emph{formal coherence checking}
+via presheaf descent conditions, enabling systematic detection of contradictions in LLM beliefs.
+
+\paragraph{Active Learning for Causal Discovery.}
+Active intervention selection has been studied extensively
+\citep{hauser2014two,shanmugam2015learning}.
+\citet{tong2001active} apply active learning to Bayesian networks.
+Our EFE-based query selection extends these ideas to the LLM querying setting,
+balancing epistemic uncertainty and instrumental value.
+
+\paragraph{Latent Variable Models.}
+The FCI algorithm \citep{spirtes2000causation} handles latent confounders
+via ancestral graphs. Recent work on ADMGs \citep{richardson2002ancestral}
+provides the graphical semantics underlying our causal states.
+The algebraic latent projection in \textsc{Holograph} provides an
+alternative continuous relaxation for latent variable marginalization.
+
+\paragraph{Sheaf Theory in Machine Learning.}
+Sheaf neural networks \citep{bodnar2022neural} apply sheaf theory to GNNs.
+\citet{hansen2021sheaf} study sheaf Laplacians for heterogeneous data.
+To our knowledge, \textsc{Holograph} is the first application of sheaf theory
+to causal discovery, using presheaf descent for belief coherence.

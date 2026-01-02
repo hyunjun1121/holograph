@@ -1,0 +1,127 @@
+%%%%%%%% HOLOGRAPH - ICML 2026 %%%%%%%%
+
+\documentclass{article}
+
+% Recommended packages
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+% Use ICML 2026 style (blind review)
+\usepackage{icml2026}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{bm}
+\usepackage{multirow}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Cleveref for references
+\usepackage[capitalize,noabbrev]{cleveref}
+
+% Check/cross marks for tables
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+
+% Theorems
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Custom commands
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\W}{\mathbf{W}}
+\newcommand{\M}{\mathbf{M}}
+\newcommand{\LL}{\mathbf{L}}
+\newcommand{\Wtilde}{\widetilde{\mathbf{W}}}
+\newcommand{\Mtilde}{\widetilde{\mathbf{M}}}
+\newcommand{\Frob}[1]{\left\|#1\right\|_F}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\diag}{diag}
+
+% Running title
+\icmltitlerunning{HOLOGRAPH: Active Causal Discovery via Sheaf-Theoretic LLM Alignment}
+
+\begin{document}
+
+\twocolumn[
+  \icmltitle{HOLOGRAPH: Active Causal Discovery via Sheaf-Theoretic \\
+    Alignment of Large Language Model Priors}
+
+  \begin{icmlauthorlist}
+    \icmlauthor{Anonymous Author(s)}{}
+  \end{icmlauthorlist}
+
+  \vskip 0.3in
+]
+
+\printAffiliationsAndNotice{}
+
+%=============================================================================
+% ABSTRACT
+%=============================================================================
+\begin{abstract}
+Causal discovery from observational data remains fundamentally limited by identifiability constraints.
+Recent work has explored leveraging Large Language Models (LLMs) as sources of prior causal knowledge,
+but existing approaches rely on heuristic integration that lacks theoretical grounding.
+We introduce \textsc{Holograph}, a framework that formalizes LLM-guided causal discovery through
+\emph{sheaf theory}---representing local causal beliefs as sections of a presheaf over variable subsets.
+Our key insight is that coherent global causal structure corresponds to the existence of a global section,
+while topological obstructions manifest as non-vanishing sheaf cohomology.
+We propose the \emph{Algebraic Latent Projection} to handle hidden confounders
+and \emph{Natural Gradient Descent} on the belief manifold for principled optimization.
+Experiments on synthetic and real-world benchmarks demonstrate that \textsc{Holograph}
+provides \emph{formal} mathematical foundations while achieving competitive performance
+on causal discovery tasks with 50--100 variables.
+Our sheaf-theoretic analysis reveals that while Identity, Transitivity, and Gluing axioms
+are satisfied to numerical precision ($<10^{-6}$), the Locality axiom systematically fails---a
+\emph{discovery} that quantifies the ``non-sheafness'' inherent in latent variable projections.
+\end{abstract}
+
+%=============================================================================
+% MAIN SECTIONS
+%=============================================================================
+
+\input{sections/intro}
+\input{sections/related}
+\input{sections/method}
+\input{sections/experiments}
+\input{sections/conclusion}
+
+%=============================================================================
+% REFERENCES
+%=============================================================================
+\bibliography{references}
+\bibliographystyle{icml2026}
+
+%=============================================================================
+% APPENDIX
+%=============================================================================
+\newpage
+\appendix
+\input{sections/appendix}
+
+\end{document}

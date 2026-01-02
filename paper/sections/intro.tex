@@ -1,0 +1,79 @@
+%=============================================================================
+% INTRODUCTION
+%=============================================================================
+\section{Introduction}
+\label{sec:intro}
+
+Causal discovery---the problem of inferring causal structure from data---is fundamental
+to scientific inquiry, yet remains provably underspecified without experimental intervention
+\citep{spirtes2000causation,pearl2009causality}.
+Observational data alone can at most identify the \emph{Markov equivalence class} of DAGs
+\citep{verma1991equivalence}, and the presence of latent confounders further complicates identifiability.
+This has motivated recent interest in leveraging external knowledge sources,
+particularly Large Language Models (LLMs), which encode substantial causal knowledge
+from pretraining corpora \citep{kiciman2023causal,ban2023query}.
+
+However, existing approaches to LLM-guided causal discovery remain fundamentally heuristic.
+Prior work such as \textsc{Democritus} \citep{mahadevan2024democritus} treats LLM outputs
+as ``soft priors'' integrated via post-hoc weighting, lacking principled treatment of:
+\begin{enumerate}
+    \item \textbf{Coherence}: How do we ensure local LLM beliefs about variable subsets
+          combine into a globally consistent causal structure?
+    \item \textbf{Contradictions}: What happens when the LLM provides conflicting information
+          about overlapping variable subsets?
+    \item \textbf{Latent Variables}: How do we project global causal models onto
+          observed subsets while accounting for hidden confounders?
+\end{enumerate}
+
+We propose \textsc{Holograph} (\textbf{H}olistic \textbf{O}ptimization of \textbf{L}atent \textbf{O}bservations via \textbf{G}radient-based \textbf{R}estriction \textbf{A}lignment for \textbf{P}resheaf \textbf{H}armony),
+a framework that addresses these challenges through the lens of \emph{sheaf theory}.
+Our key insight is that local causal beliefs can be formalized as \emph{sections} of a presheaf
+over the power set of variables. While \emph{full} sheaf structure (including Locality)
+fails due to non-local latent coupling, we demonstrate that Identity, Transitivity, and
+Gluing axioms hold to numerical precision ($< 10^{-6}$), enabling coherent belief aggregation.
+
+\paragraph{Contributions.}
+\begin{enumerate}
+    \item \textbf{Sheaf-Theoretic Framework}: We formalize LLM-guided causal discovery
+          as a presheaf satisfaction problem, where local sections are linear SEMs
+          and restriction maps implement \emph{Algebraic Latent Projection}.
+    \item \textbf{Natural Gradient Optimization}: We derive a natural gradient descent
+          algorithm on the belief manifold with Tikhonov regularization for numerical stability.
+    \item \textbf{Active Query Selection}: We use Expected Free Energy (EFE) to select
+          maximally informative LLM queries, balancing epistemic and instrumental value.
+    \item \textbf{Theoretical Analysis}: We \emph{empirically verify} that Identity, Transitivity,
+          and Gluing axioms hold to numerical precision, while systematically identifying
+          Locality violations arising from non-local latent coupling.
+    \item \textbf{Empirical Validation}: Comprehensive experiments on synthetic (ER, SF)
+          and real-world (Sachs, Asia) benchmarks, demonstrating \textbf{+91\% F1 improvement}
+          over NOTEARS in extreme low-data regimes ($N \le 10$) and \textbf{+13.6\% F1 improvement}
+          when using \textsc{Holograph} priors to regularize statistical methods.
+    \item \textbf{Implementation Verification}: Complete mathematical verification that all
+          15 core formulas in the specification match the implementation to numerical precision
+          (Appendix~\ref{app:verification}).
+\end{enumerate}
+
+\paragraph{Key Finding 1: Locality Failure as Discovery.}
+Our sheaf exactness experiments (Section~\ref{sec:sheaf-validation}) reveal a striking result:
+while Identity ($\rho_{UU} = \text{id}$), Transitivity ($\rho_{ZU} = \rho_{ZV} \circ \rho_{VU}$),
+and Gluing axioms pass with errors $< 10^{-6}$, the Locality axiom \emph{systematically fails}
+with errors scaling as $\mathcal{O}(\sqrt{n})$ with graph size.
+This is not a bug but a \emph{discovery}: it reveals fundamental non-local information
+propagation through latent confounders. The failure quantitatively measures the
+``non-sheafness'' of causal models under latent projections---a diagnostic
+that could guide when latent variable modeling is necessary.
+
+\paragraph{Key Finding 2: Sample Efficiency \& Hybrid Synergy.}
+Our sample efficiency experiments (Section~\ref{sec:sample-efficiency}) establish a clear
+decision boundary for when to use LLM-based discovery:
+\begin{itemize}
+    \item \textbf{Low-data regime ($N < 20$)}: \textsc{Holograph}'s zero-shot approach achieves
+          \textbf{F1 = 0.67} on semantically rich domains, outperforming NOTEARS by up to
+          \textbf{+91\%} relative F1 when only $N=5$ samples are available.
+    \item \textbf{Hybrid synergy}: When some data is available ($N = 10$--$50$), using
+          \textsc{Holograph} priors to regularize NOTEARS yields \textbf{+13.6\% F1 improvement}
+          by preventing overfitting to sparse observations.
+    \item \textbf{Semantic advantage}: Performance depends critically on LLM domain knowledge.
+          On Asia (epidemiology with intuitive variable names), \textsc{Holograph} achieves
+          F1 = 0.67; on Sachs (specialized protein signaling), only F1 = 0.20.
+\end{itemize}

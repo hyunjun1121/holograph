@@ -1,0 +1,519 @@
+{
+  "experiment": "E3_asia_hybrid",
+  "dataset": "Asia",
+  "results": {
+    "notears_vanilla_N10": {
+      "shd": {
+        "mean": 10.8,
+        "std": 2.1354156504062622,
+        "min": 8.0,
+        "max": 14.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.5572396009787314,
+        "std": 0.08286405345398394,
+        "min": 0.4166666666666667,
+        "max": 0.6399999999999999,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.41661764705882354,
+        "std": 0.06520462865944346,
+        "min": 0.3125,
+        "max": 0.5,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.85,
+        "std": 0.1457737973711325,
+        "min": 0.625,
+        "max": 1.0,
+        "n": 5
+      },
+      "tp": {
+        "mean": 6.8,
+        "std": 1.16619037896906,
+        "min": 5.0,
+        "max": 8.0,
+        "n": 5
+      },
+      "fp": {
+        "mean": 9.6,
+        "std": 1.7435595774162693,
+        "min": 7.0,
+        "max": 12.0,
+        "n": 5
+      },
+      "fn": {
+        "mean": 1.2,
+        "std": 1.1661903789690602,
+        "min": 0.0,
+        "max": 3.0,
+        "n": 5
+      },
+      "n_pred_edges": {
+        "mean": 16.4,
+        "std": 2.0591260281974,
+        "min": 14.0,
+        "max": 20.0,
+        "n": 5
+      },
+      "n_true_edges": {
+        "mean": 8.0,
+        "std": 0.0,
+        "min": 8.0,
+        "max": 8.0,
+        "n": 5
+      }
+    },
+    "notears_holograph_filtered_N10": {
+      "shd": {
+        "mean": 9.2,
+        "std": 2.1354156504062622,
+        "min": 6.0,
+        "max": 12.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.6096969696969696,
+        "std": 0.09437124587367822,
+        "min": 0.45454545454545453,
+        "max": 0.7272727272727273,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.4621848739495798,
+        "std": 0.07349939363250378,
+        "min": 0.35714285714285715,
+        "max": 0.5714285714285714,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.9,
+        "std": 0.1457737973711325,
+        "min": 0.625,
+        "max": 1.0,
+        "n": 5
+      },
+      "tp": {
+        "mean": 7.2,
+        "std": 1.16619037896906,
+        "min": 5.0,
+        "max": 8.0,
+        "n": 5
+      },
+      "fp": {
+        "mean": 8.4,
+        "std": 1.3564659966250536,
+        "min": 6.0,
+        "max": 10.0,
+        "n": 5
+      },
+      "fn": {
+        "mean": 0.8,
+        "std": 1.1661903789690602,
+        "min": 0.0,
+        "max": 3.0,
+        "n": 5
+      },
+      "n_pred_edges": {
+        "mean": 15.6,
+        "std": 1.3564659966250536,
+        "min": 14.0,
+        "max": 17.0,
+        "n": 5
+      },
+      "n_true_edges": {
+        "mean": 8.0,
+        "std": 0.0,
+        "min": 8.0,
+        "max": 8.0,
+        "n": 5
+      },
+      "n_filtered_edges": {
+        "mean": 9.8,
+        "std": 0.39999999999999997,
+        "min": 9.0,
+        "max": 10.0,
+        "n": 5
+      }
+    },
+    "notears_vanilla_N20": {
+      "shd": {
+        "mean": 6.4,
+        "std": 2.0591260281974,
+        "min": 4.0,
+        "max": 10.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.7078354978354978,
+        "std": 0.07614623863323729,
+        "min": 0.5833333333333334,
+        "max": 0.8,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.5658882783882784,
+        "std": 0.0772950733973802,
+        "min": 0.4375,
+        "max": 0.6666666666666666,
+        "n": 5
+      },
+      "recall": {
+        "mean": 0.95,
+        "std": 0.06123724356957946,
+        "min": 0.875,
+        "max": 1.0,
+        "n": 5
+      },
+      "tp": {
+        "mean": 7.6,
+        "std": 0.48989794855663565,
+        "min": 7.0,
+        "max": 8.0,
+        "n": 5
+      },
+      "fp": {
+        "mean": 6.0,
+        "std": 1.6733200530681511,
+        "min": 4.0,
+        "max": 9.0,
+        "n": 5
+      },
+      "fn": {
+        "mean": 0.4,
+        "std": 0.48989794855663565,
+        "min": 0.0,
+        "max": 1.0,
+        "n": 5
+      },
+      "n_pred_edges": {
+        "mean": 13.6,
+        "std": 1.3564659966250536,
+        "min": 12.0,
+        "max": 16.0,
+        "n": 5
+      },
+      "n_true_edges": {
+        "mean": 8.0,
+        "std": 0.0,
+        "min": 8.0,
+        "max": 8.0,
+        "n": 5
+      }
+    },
+    "notears_holograph_filtered_N20": {
+      "shd": {
+        "mean": 4.0,
+        "std": 1.4142135623730951,
+        "min": 2.0,
+        "max": 6.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.8040343282448547,
+        "std": 0.05715454854242248,
+        "min": 0.7272727272727273,
+        "max": 0.888888888888889,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.6761505161505161,
+        "std": 0.08087187264194784,
+        "min": 0.5714285714285714,
+        "max": 0.8,
+        "n": 5
+      },
+      "recall": {
+        "mean": 1.0,
+        "std": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 5
+      },
+      "tp": {
+        "mean": 8.0,
+        "std": 0.0,
+        "min": 8.0,
+        "max": 8.0,
+        "n": 5
+      },
+      "fp": {
+        "mean": 4.0,
+        "std": 1.4142135623730951,
+        "min": 2.0,
+        "max": 6.0,
+        "n": 5
+      },
+      "fn": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "n_pred_edges": {
+        "mean": 12.0,
+        "std": 1.4142135623730951,
+        "min": 10.0,
+        "max": 14.0,
+        "n": 5
+      },
+      "n_true_edges": {
+        "mean": 8.0,
+        "std": 0.0,
+        "min": 8.0,
+        "max": 8.0,
+        "n": 5
+      },
+      "n_filtered_edges": {
+        "mean": 9.8,
+        "std": 0.39999999999999997,
+        "min": 9.0,
+        "max": 10.0,
+        "n": 5
+      }
+    },
+    "notears_vanilla_N50": {
+      "shd": {
+        "mean": 1.0,
+        "std": 0.6324555320336759,
+        "min": 0.0,
+        "max": 2.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.9424836601307188,
+        "std": 0.035172873325682884,
+        "min": 0.888888888888889,
+        "max": 1.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.8933333333333333,
+        "std": 0.06347936380926976,
+        "min": 0.8,
+        "max": 1.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 1.0,
+        "std": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 5
+      },
+      "tp": {
+        "mean": 8.0,
+        "std": 0.0,
+        "min": 8.0,
+        "max": 8.0,
+        "n": 5
+      },
+      "fp": {
+        "mean": 1.0,
+        "std": 0.6324555320336759,
+        "min": 0.0,
+        "max": 2.0,
+        "n": 5
+      },
+      "fn": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "n_pred_edges": {
+        "mean": 9.0,
+        "std": 0.6324555320336759,
+        "min": 8.0,
+        "max": 10.0,
+        "n": 5
+      },
+      "n_true_edges": {
+        "mean": 8.0,
+        "std": 0.0,
+        "min": 8.0,
+        "max": 8.0,
+        "n": 5
+      }
+    },
+    "notears_holograph_filtered_N50": {
+      "shd": {
+        "mean": 0.8,
+        "std": 0.7483314773547883,
+        "min": 0.0,
+        "max": 2.0,
+        "n": 5
+      },
+      "f1": {
+        "mean": 0.9542483660130718,
+        "std": 0.04195243538792472,
+        "min": 0.888888888888889,
+        "max": 1.0,
+        "n": 5
+      },
+      "precision": {
+        "mean": 0.9155555555555555,
+        "std": 0.07620634755325442,
+        "min": 0.8,
+        "max": 1.0,
+        "n": 5
+      },
+      "recall": {
+        "mean": 1.0,
+        "std": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 5
+      },
+      "tp": {
+        "mean": 8.0,
+        "std": 0.0,
+        "min": 8.0,
+        "max": 8.0,
+        "n": 5
+      },
+      "fp": {
+        "mean": 0.8,
+        "std": 0.7483314773547883,
+        "min": 0.0,
+        "max": 2.0,
+        "n": 5
+      },
+      "fn": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 5
+      },
+      "n_pred_edges": {
+        "mean": 8.8,
+        "std": 0.7483314773547883,
+        "min": 8.0,
+        "max": 10.0,
+        "n": 5
+      },
+      "n_true_edges": {
+        "mean": 8.0,
+        "std": 0.0,
+        "min": 8.0,
+        "max": 8.0,
+        "n": 5
+      },
+      "n_filtered_edges": {
+        "mean": 9.6,
+        "std": 0.48989794855663565,
+        "min": 9.0,
+        "max": 10.0,
+        "n": 5
+      }
+    }
+  },
+  "config": {
+    "experiment": {
+      "name": "E3_asia_hybrid",
+      "description": "Hybrid LLM-initialized NOTEARS on Asia in low-data regime",
+      "type": "E3_hybrid_prior",
+      "intent": "Demonstrate that using HOLOGRAPH's strong semantic prior on Asia (F1=0.67)\nimproves NOTEARS performance in the low-data regime (N=10-50) where\nstatistical methods alone struggle.\n",
+      "hypothesis": "notears_holograph_filtered achieves higher F1 than notears_vanilla at N=10-20,\nbecause HOLOGRAPH's semantic prior provides regularization that prevents\noverfitting to limited data.\n",
+      "reference": "E2 results: HOLOGRAPH F1=0.67 (constant), NOTEARS F1=0.55 at N=10",
+      "success_criteria": {
+        "filtered_beats_vanilla_N10": true,
+        "filtered_beats_vanilla_N20": true,
+        "improvement_at_N10": 0.05
+      }
+    },
+    "dataset": {
+      "name": "asia",
+      "domain": "epidemiology",
+      "n_vars": 8,
+      "n_edges": 8,
+      "semantic_density": "very_high"
+    },
+    "methods": [
+      {
+        "name": "notears_vanilla",
+        "type": "data_driven",
+        "uses_data": true,
+        "uses_llm_prior": false,
+        "description": "Standard NOTEARS baseline"
+      },
+      {
+        "name": "notears_holograph_filtered",
+        "type": "hybrid",
+        "uses_data": true,
+        "uses_llm_prior": true,
+        "prior_mode": "confidence_filtering",
+        "description": "NOTEARS with confidence-filtered HOLOGRAPH prior (|W|>0.3)"
+      }
+    ],
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "n_samples_sweep": [
+      10,
+      20,
+      50
+    ],
+    "holograph": {
+      "learning_rate": 0.01,
+      "max_steps": 500,
+      "max_queries": 100,
+      "max_queries_per_step": 5,
+      "initial_queries": 20,
+      "lambda_descent": 1.0,
+      "lambda_spec": 0.1,
+      "lambda_acyclic": 1.0,
+      "lambda_reg": 0.0001,
+      "llm_provider": "sglang",
+      "llm_model_role": "primary",
+      "edge_threshold": 0.05
+    },
+    "notears": {
+      "lambda1": 0.05,
+      "max_iter": 200,
+      "h_tol": "1e-6",
+      "threshold": 0.2
+    },
+    "hybrid": {
+      "init_scale": 0.3,
+      "penalty_base": 0.1,
+      "penalty_min": 0.01,
+      "filter_threshold": 0.3,
+      "penalty_confident": 0.01
+    },
+    "metrics": [
+      "shd",
+      "f1",
+      "precision",
+      "recall"
+    ],
+    "output": {
+      "base_dir": "experiments/outputs/asia_hybrid",
+      "save_adjacency": true,
+      "save_metrics": true,
+      "generate_latex": true
+    },
+    "assertions": [
+      {
+        "dataset_nodes": 8
+      },
+      {
+        "dataset_name": "asia"
+      },
+      {
+        "check_acyclicity": true
+      }
+    ]
+  },
+  "timestamp": "2026-01-02T12:36:47.087722"
+}
