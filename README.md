@@ -2,7 +2,19 @@
 
 ## Sheaf-Theoretic Framework for LLM-Guided Causal Discovery
 
-**arXiv Preprint**
+[![arXiv](https://img.shields.io/badge/arXiv-2512.24478-b31b1b.svg)](https://www.arxiv.org/abs/2512.24478)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+**Paper:** [HOLOGRAPH: Active Causal Discovery via Sheaf-Theoretic Alignment of Large Language Model Priors](https://www.arxiv.org/abs/2512.24478)
+
+### Key Results
+
+| Finding | Result |
+|---------|--------|
+| **Semantic Advantage** | F1 = 0.67 zero-shot on Asia (epidemiology) |
+| **Low-Data Regime** | +91% F1 improvement over NOTEARS at N=5 |
+| **Hybrid Synergy** | +13.6% F1 when combining LLM prior with statistical methods |
+| **Crossover Point** | LLM-based discovery preferred when N < 20 samples |
 
 ---
 
@@ -260,10 +272,13 @@ This code is released under the MIT License for academic use.
 If you use this code, please cite:
 
 ```bibtex
-@article{kim2025holograph,
-  title={HOLOGRAPH: Active Causal Discovery via Sheaf-Theoretic Alignment of Large Language Model Priors},
-  author={Kim, Hyunjun},
-  journal={arXiv preprint},
-  year={2025}
+@misc{kim2025holographactivecausaldiscovery,
+      title={HOLOGRAPH: Active Causal Discovery via Sheaf-Theoretic Alignment of Large Language Model Priors},
+      author={Hyunjun Kim},
+      year={2025},
+      eprint={2512.24478},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2512.24478},
 }
 ```
